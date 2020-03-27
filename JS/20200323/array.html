@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // .join('')將陣列接成文字
+        // 如果()沒東西，就是用,來連接
+        let arr1 = ['a', 'b', 'c', 'd'];
+        let join = arr1.join('');
+        console.log(join);
+
+        // .push() 在陣列後新增值
+        let arr2 = [1, 2, 3, 4];
+        arr2.push(5);
+        console.log(arr2)
+
+        // .splice(開始位置, 刪除數量, 插入新值1, 插入新值2...)
+        let arr3 = ["香蕉", "鳳梨", "蘋果"];
+        arr3.splice(2, 1, "西瓜");
+        console.log(arr3);
+
+        // .concat() 陣列連接
+        let arr4 = ['a', 'b', 'c']
+        let arr5 = ['d', 'e', 'f']
+        let arr6 = arr4.concat(arr5);
+        console.log(arr6);
+
+        // .reverse() 顛倒陣列
+        let arr7 = ['a', 'b', 'c'];
+        let arr8 = arr7.reverse();
+        console.log(arr8)
+
+        // .includes(文字) 陣列中找文字，回傳布林值
+        // .indexOf(文字) 陣列中找文字，回傳索引值，找不到回傳-1
+        // 完全符合才找得到
+        let arr9 = ["香蕉", "鳳梨", "蘋果"];
+        let includes = arr9.includes("蘋果");
+        console.log(includes);
+        let indexOf = arr9.indexOf("蘋果");
+        console.log(indexOf)
+
+        // .map()迴圈陣列後產生新的陣列
+        // 一定要有return
+        let arr10 = [1, 2, 3, 4];
+        arr10 = arr10.map((number) => {
+            return number * 2;
+        })
+        console.log(arr10);
+
+        // .filter() 過濾
+        let arr11 = [100, 200, 300, 400];
+        arr11 = arr11.filter((number) => {
+            let stay = false;
+            if (number > 300) {
+                stay = true;
+            }
+
+            return stay;
+        })
+
+        console.log(arr11)
+
+
+    </script>
+</body>
+
+</html>

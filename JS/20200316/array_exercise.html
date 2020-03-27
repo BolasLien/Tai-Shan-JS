@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //練習
+        //跳出五次prompt()，將使用者五次輸入的數字放進陣列
+        //顯示出五個數字的最大值和加總
+
+        let userInputs = new Array();
+        let max = 0;
+        let count = 0;
+        for (let i = 0; i < 5; i++) {
+            userInputs[i] = parseInt(prompt("請輸入數字"));
+
+            if (userInputs[i] > max) {
+                max = userInputs[i];
+            }
+
+            count += userInputs[i]
+        }
+
+        //給自己看
+        for (let item of userInputs) {
+            console.log(item)
+        }
+
+        document.write(`最大值是 ${max}<br>`);
+        document.write(`加總值是 ${count}<br>`);
+
+    </script>
+</body>
+
+</html>

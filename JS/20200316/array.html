@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Array
+        var bendons = new Array();
+        bendons = ["雞排飯", "排骨飯", "魚排飯"];
+
+        document.write(`數量 ${bendons.length}，第一個是${bendons[0]}`)
+        for (let i = 0; i < bendons.length; i++) {
+            console.log(bendons[i]);
+        }
+        document.write(`<hr>`)
+
+        // JSON
+        var person = {
+            name: "王小明",
+            age: 25,
+            number: 24
+        }
+
+        document.write(`名字叫 ${person["name"]} 或 ${person.name} <br>`);
+        document.write(`${Object.keys(person)}<br>`)
+
+        //JSON in Array
+        var orders = new Array();
+        orders = [
+            { name: "小明", bendon: "雞排飯" },
+            { name: "小美", bendon: "排骨飯" },
+            { name: "小強", bendon: "魚排飯" }
+        ];
+
+
+        console.log(orders[1]);
+        console.log(orders[1]["name"]);
+        for (let i = 0; i < orders.length; i++) {
+            console.log(orders[i]["bendon"])
+        }
+
+        //Array in JSON
+        var restaurant = {
+            name: "美味便當店",
+            tel: "01-23456789",
+            foods: ["雞排飯", "排骨飯", "魚排飯"]
+        }
+
+        console.log(restaurant["name"]);
+        console.log(restaurant["foods"][0]);
+        for (let i = 0; i < restaurant["foods"].length; i++) {
+            console.log(restaurant["foods"][i])
+        }
+
+        document.write("<hr>");
+        //for of 尋訪陣列裡的每個值，無法對物件使用
+        for (let bendon of bendons) {
+            document.write(bendon + "<br>")
+        }
+
+        document.write("<hr>");
+        //for in 尋訪陣列裡的每個索引
+        for (let i in restaurant) {
+            document.write(`${i} 的值是${restaurant[i]} <br>`)
+        }
+
+
+
+    </script>
+</body>
+
+</html>

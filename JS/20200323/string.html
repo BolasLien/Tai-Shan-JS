@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = " I'am a string.     ";
+        // .trim() 去除字串前後空白
+        let Trim = str.trim();
+        console.log(Trim);
+
+        let str2 = "asjfksgskjh"
+        // .toUpperCase() 轉大寫
+        let Up = str2.toUpperCase();
+        console.log(Up);
+
+        let str3 = "ASKLDJALKSJDLKASJD"
+        // .toLowerCase() 轉小寫
+        let Low = str3.toLowerCase();
+        console.log(Low)
+
+        let str4 = "JAVASCRIPT abcdefg ;;dead"
+        //.includes() 是否包含指定文字，會回傳true 或 false
+        let isInclude = str4.includes("JAVASCRIPT");
+        console.log(isInclude)
+        // .match() 是否符合regex規則，會回傳所有符合的文字陣列
+        let Match = str4.match(/JAVASCRIPT/g);
+        console.log(Match)
+
+        let str5 = "XMAS MAXS XMAS";
+        //.replace() 取代文字，若有重複的話只會取代第一個
+        let replace1 = str5.replace("XMAS", "Christmas")
+        console.log(replace1)
+        //.replace() 用正則表達式取代文字
+        let replace2 = str5.replace(/XMAS/ig, "Christmas")
+        console.log(replace2)
+
+        let str6 = "Hello 123456";
+        //.substr(開始位置，長度)
+        let sub = str6.substr(8, 2);
+        console.log(sub);
+
+        //.substring(開始位置,結尾位置)
+        let sub2 = str6.substring(8, 1);
+        console.log(sub2);
+
+        //.substring(開始位置,結尾位置)
+        //可以放負數，代表倒數
+        let slice = str6.slice(0, -7)
+        console.log(slice);
+
+
+        let str7 = "abcd"
+        let nan = parseInt(str7);
+        console.log(nan);
+        console.log(isNaN(nan));
+
+        let str8 = "1,2,3,4,5,6,a,b,c,d,e,f,g";
+        let split = str8.split(',');
+        let split2 = str8.split('');
+
+        console.log(split)
+        console.log(split2)
+
+
+    </script>
+</body>
+
+</html>

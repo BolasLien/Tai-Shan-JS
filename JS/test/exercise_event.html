@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="controller">
+        <button class="btn">剪刀</button>
+        <button class="btn">石頭</button>
+        <button class="btn">布</button>
+    </div>
+
+    <ul id="result"></ul>
+
+    <script>
+        mora = ['剪刀', '石頭', '布']
+        btns = document.getElementsByClassName('btn')
+
+        let result = document.getElementById('result');
+
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+
+        const getResult = (p) => {
+            let r = rand(0, 2);
+
+            let res = "";
+            if (r == p + 1) {
+                res = `輸了`
+            }
+            else if (r == p) {
+                res = `平手`
+            }
+            else if (r == p - 1 || r == p + 2) {
+                res = `贏了`
+            }
+            alert(res);
+            result.innerHTML += `<li>電腦出${mora[r]} 玩家出${mora[p]} ${res}</li>`;
+        }
+
+        for (let i in btns) {
+            btns[i].onclick = () => {
+                getResult(i);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

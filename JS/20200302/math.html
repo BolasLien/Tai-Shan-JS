@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 id=hello></h1>
+    <script>
+        let num1 = 5;
+        let num2 = 7;
+        let result = num1 + num2;
+
+        console.log(result);
+
+        /* 練習
+    宣告變數 x 和 y，變數 x 為 777， y 是 x 除以 7 的餘數加 7
+    在控制台顯示 y 的值 */
+
+        let x = 777;
+        let y = (x % 7) + 7;
+        console.log(y);
+
+
+        /* 練習
+    宣告變數 x 為 123， 以簡寫將 x 加 456 後在控制台顯示 */
+
+        let a = 123;
+        a += 456;
+        console.log(a);
+
+
+        /* 練習
+    宣告兩個變數，一個是你的姓，一個是你的名
+    在網頁寫上 我的名字是 XXX */
+
+        let firstName = "慈恩";
+        let lastName = "連";
+
+        let fullName = lastName + firstName;
+        let hello1 = "我的名字是 " + fullName;
+        let hello2 = `我的名字是 ${fullName}`;
+
+        document.write(hello1);
+        document.getElementById('hello').textContent = hello2;
+        console.log(hello2);
+    </script>
+</body>
+
+</html>

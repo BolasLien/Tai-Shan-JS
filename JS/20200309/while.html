@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let input = '';
+        let r = 6;
+        let count = 1;
+        while (true) {
+            input = prompt(`第${count}次猜，請輸入1~9`);
+            if (input > r) {
+                alert("猜錯了~小一點")
+            }
+            else if (input < r) {
+                alert("猜錯了~大一點")
+            }
+            else if (input == r) {
+                alert(`恭喜答對了，你猜了${count}次`)
+                break;
+            }
+            else {
+                alert(`不要旋轉我喔!`)
+            }
+
+            count++;
+        }
+
+    </script>
+</body>
+
+</html>

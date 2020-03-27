@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 400px;
+            height: 400px;
+            margin: auto;
+            padding: 0;
+            background: radial-gradient(red, orange);
+        }
+
+        .text {
+            width: 400px;
+            height: 60px;
+            margin: auto;
+            text-align: center;
+            vertical-align: center;
+            animation: text 1.5s forwards;
+
+        }
+
+        @keyframes text {
+            from {
+                font-size: 1rem;
+                color: rgba(0, 0, 0, 1);
+            }
+
+            to {
+                font-size: 3rem;
+                color: rgba(0, 0, 0, 0);
+            }
+        }
+
+        .text2 {
+            width: 400px;
+            height: 60px;
+            font-size: 3rem;
+            margin: auto;
+            text-align: center;
+            animation: text2 2s ease-in forwards;
+
+        }
+
+        @keyframes text2 {
+            from {
+                color: rgba(0, 0, 0, 0);
+            }
+
+            70% {
+                color: rgba(0, 0, 0, 0);
+            }
+
+            to {
+                color: rgba(0, 0, 0, 1);
+            }
+        }
+
+        #img {
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            padding: 0;
+            animation: img 1s ease-in forwards;
+        }
+
+        @keyframes img {
+            from {
+                width: 0px;
+                height: 0px;
+
+            }
+
+            70% {
+                width: 0px;
+                height: 0px;
+
+            }
+
+            to {
+                width: 400px;
+                height: 400px;
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="text1" class="text"></div>
+        <div id="text2" class="text2"></div>
+        <img src="" id="img">
+    </div>
+
+    <script>
+        let score = 0;
+
+        let isReady = confirm("你想知道你的龜毛指數嗎?");
+        if (isReady) {
+            let q1 = prompt("你是怎麼擠牙膏的?\n 1.從中間\n 2.從尾巴\n 3.隨便，有出來就好");
+            if (q1 === "1") {
+                score += 10;
+            }
+            else if (q1 === "2") {
+                score += 20;
+            }
+            else if (q1 === "3") {
+                alert("就是有你這樣的人!");
+                score += 5;
+            }
+            else {
+                alert("不要亂回答拉XD");
+            }
+
+
+            let q2 = prompt("你的襪子先穿左腳還是右腳?\n 1.左腳\n 2.右腳\n 3.沒注意過");
+            if (q2 === "1") {
+                score += 20;
+            }
+            else if (q2 === "2") {
+                score += 20;
+            }
+            else if (q2 === "3") {
+                score += 5;
+            }
+            else {
+                alert("不要亂回答拉XD");
+            }
+
+            let q3 = prompt("你肚子餓的時候會不會生氣?\n 1.會\n 2.不會\n 3.看情況");
+            if (q3 === "1") {
+                score += 5;
+            }
+            else if (q3 === "2") {
+                alert("應該要生氣才對啊!");
+                score += 10;
+            }
+            else if (q3 === "3") {
+                alert("應該要生氣才對啊!");
+                score += 20;
+            }
+            else {
+                alert("不要亂回答拉XD");
+            }
+
+            let q4 = prompt("你房間的椅子通常是用來...\n 1.坐著\n 2.掛衣服、放東西\n 3.我房間沒有椅子QQ");
+            if (q4 === "1") {
+                alert("真乖~");
+                score += 20;
+            }
+            else if (q4 === "2") {
+                alert("聽說全世界有9成的人都是這樣用");
+                score += 15;
+            }
+            else if (q4 === "3") {
+                alert("替你QQ");
+                score += 5;
+            }
+            else {
+                alert("不要亂回答拉XD");
+            }
+
+            let q5 = prompt("你的手機是哪個系統?\n 1.Android\n 2.iOS\n 3.其他");
+            if (q5 === "1") {
+                alert("聽說用Android的人都很好相處");
+                score += 20;
+            }
+            else if (q5 === "2") {
+                alert("聽說用iOS的人都很美");
+                score += 20;
+            }
+            else if (q5 === "3") {
+                alert("再騙啊!");
+                score += 5;
+            }
+            else {
+                alert("不要亂回答拉XD");
+            }
+
+            document.getElementById("text1").textContent = `成績計算中`;
+            document.getElementById("text2").textContent = `龜毛指數 ${score} 分!`;
+
+        }
+        else {
+            document.getElementById("text1").textContent = `恭喜獲得稱號!`;
+            document.getElementById("text2").textContent = `「我就龜毛!」`;
+        }
+
+        document.getElementById("img").setAttribute("src", "https://memeprod.sgp1.digitaloceanspaces.com/user-template-thumbnail/b3a4babd59ebb46530a7f7cca856d848.jpg");
+
+
+    </script>
+</body>
+
+</html>

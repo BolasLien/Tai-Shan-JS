@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <script>
+        //綜合練習
+        $.getJSON("https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json",
+            function (data) {
+                //把口罩資料整理起來，取用前5筆
+                let features = data["features"];
+                let maskMaps = new Array();
+                for (let i = 0; i < 5; i++) {
+                    maskMaps[i] = features[i]["properties"];
+                }
+
+                //繪製欄位
+                let cols = ["name", "address", "phone", "mask_adult", "mask_child"]
+
+                document.write(`
+                <table border = 1>
+                    <tr>
+                        <td>名字</td>
+                        <td>地址</td>
+                        <td>電話</td>
+                        <td>大人口罩</td>
+                        <td>小孩口罩</td>
+                    </tr>
+                `)
+
+                for (let item of maskMaps) {
+
+                    document.write(`
+                    <tr>
+                    <td>${item.name}</td>
+                    <td>${item.address}</td>
+                    <td>${item.phone}</td>
+                    <td>${item.mask_adult}</td>
+                    <td>${item.mask_child}</td>
+                    </tr>
+                    `)
+                }
+
+                document.write(`</table>`)
+
+            })
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //練習2
+        let str = prompt("請輸入英文不同大小寫")
+        let str2 = str.split('')
+        for (let i = 0; i < str2.length; i++) {
+            if (str[i].match(/[a-z]/)) {
+                str2[i] = str2[i].toUpperCase();
+            }
+            else {
+                str2[i] = str2[i].toLowerCase();
+            }
+        }
+
+        str2 = str2.join('');
+
+        console.log(`原本是：${str}`)
+        console.log(`結果是：${str2}`)
+
+
+    </script>
+</body>
+
+</html>

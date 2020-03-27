@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .test {
+
+            border: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // for (let i = 0; i <= 10; i++) {
+        //     if (i == 1 || i == 4 || i == 7 || i == 10) {
+        //         document.write(`印出 i = ${i}<br>`);
+        //     }
+
+        // }
+
+        for (let a = 0; a <= 51; a++) {
+            document.write(`<div style="color:rgb(${a * 5},0,${255 - (a * 5)});">★</div>`);
+        }
+
+
+        document.write(`<table border="1">`)
+        for (let i = 1; i <= 9; i++) {
+            document.write(`<tr >`);
+            for (let j = 1; j <= 9; j++) {
+                document.write(`<td style="color:#fff;background:rgb(${j * 25},0,${255 - j * 25});">`);
+                document.write(`${i} x ${j} = ${i * j} `)
+                document.write(`</td>`);
+            }
+            document.write(`</tr>`);
+        }
+        document.write(`</table>`)
+
+
+    </script>
+</body>
+
+</html>

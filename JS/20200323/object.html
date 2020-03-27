@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let ming = {
+        //     firstName: "小名",
+        //     lastName: "王",
+        //     sayHello() {
+        //         alert(`Hi，我叫${this.lastName + this.firstName} `)
+        //     }
+        // }
+
+        // ming.sayHello();
+
+        class Person {
+            constructor(firstName, lastNmae) {
+                this.firstName = firstName;
+                this.lastNmae = lastNmae;
+            }
+
+            sayHello() {
+                alert(`你好，我的名字叫作${this.lastNmae + this.firstName}`)
+            }
+        }
+
+        let ming = new Person();
+        ming.lastNmae = "王";
+        ming.firstName = "小明";
+        ming.sayHello();
+    </script>
+</body>
+
+</html>

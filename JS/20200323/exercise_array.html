@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //練習
+        let str = "";
+
+        // str = str.split("")
+        // console.log("---↓↓↓String轉Array↓↓↓---")
+        // console.log(str)
+
+        // str = str.reverse();
+        // console.log("---↓↓↓顛倒Array↓↓↓---")
+        // console.log(str)
+
+        // str = str.join('');
+        // console.log("---↓↓↓Array轉String↓↓↓---")
+        // console.log(str)
+
+        let reverseInput = (data) => {
+            let _str = data.trim().split('').reverse().join('');
+            return _str;
+        }
+
+        str = prompt("請輸入文字")
+
+        str = reverseInput(str);
+        console.log(str);
+
+    </script>
+</body>
+
+</html>

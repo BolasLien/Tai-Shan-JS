@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let chineseNum = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+        let temperatures = [
+            [18.2, 17.3, 15.0, 13.4],
+            [23.8, 25.1, 20.6, 17.8],
+            [20.6, 21.5, 18.4, 15.7],
+        ];
+        let max = 0;
+        let min = 0;
+        let maxIndex = [0, 0];
+        let minIndex = [0, 0];
+
+        let countCol = [0, 0, 0, 0];
+
+        //印出陣列內容
+        document.write(`<table border = 1>`)
+
+        for (let i = 0; i <= temperatures[0].length; i++) {
+            if (i == 0) {
+                document.write(`<td></td>`)
+            }
+            else {
+                document.write(`<td>星期${chineseNum[i]}</td>`)
+            }
+        }
+        document.write(`<td>時段平均溫度</td>`)
+
+        for (let i in temperatures) {
+            document.write(`<tr>`)
+            document.write(`<td>時段${chineseNum[parseInt(i) + 1]}</td>`)
+
+            let count = 0;
+            for (let j in temperatures[i]) {
+                document.write(`<td>${temperatures[i][j]}</td>`)
+                countCol[j] += temperatures[i][j];
+                count += temperatures[i][j];
+
+                //最高溫
+                if (temperatures[i][j] > max) {
+                    max = temperatures[i][j];
+                    maxIndex[0] = parseInt(i) + 1;
+                    maxIndex[1] = parseInt(j) + 1;
+                }
+
+                //最低溫
+                if (min == 0) {
+                    min = temperatures[i][j];
+                    minIndex[0] = parseInt(i) + 1;
+                    minIndex[1] = parseInt(j) + 1;
+                }
+                else if (min > temperatures[i][j]) {
+                    min = temperatures[i][j];
+                    minIndex[0] = parseInt(i) + 1;
+                    minIndex[1] = parseInt(j) + 1;
+                }
+
+            }
+            //時段一、時段二、時段三的平均氣溫
+            document.write(`<td bgcolor= #ffcc00>${(count / temperatures[i].length).toFixed(2)}</td>`)
+            document.write(`</tr>`)
+        }
+
+        //每日的平均溫度
+        document.write(`<td>日平均溫度</td>`)
+        for (let i = 0; i < countCol.length; i++) {
+            document.write(`<td bgcolor = #ffcc00>${(countCol[i] / temperatures.length).toFixed(2)}</td>`)
+        }
+
+        document.write(`</table>`)
+
+
+        //溫度最高的日子與時段
+        document.write(`<h3>最高溫是${max} 在 星期${chineseNum[maxIndex[1]]} 的 時段${chineseNum[maxIndex[0]]} </h3>`)
+
+        //溫度最低的日子與時段
+        document.write(`<h3>最低溫是${min} 在 星期${chineseNum[minIndex[1]]} 的 時段${chineseNum[minIndex[0]]} </h3>`)
+
+
+
+    </script>
+</body>
+
+</html>

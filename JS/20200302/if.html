@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let num1 = 10;
+
+        //如果數字小於等於10
+        if (num1 <= 10) {
+            document.write("數字小於等於 10");
+        }
+        else {
+            document.write("數字大於10");
+        }
+        document.write("<br>");
+
+
+        let str = "10";
+
+        //兩個等於會忽略資料型態
+        if (num1 == str) {
+            document.write("==");
+        }
+
+        document.write("<br>");
+
+        //三個等於會判斷資料型態是否一樣
+        if (num1 === str) {
+            document.write("===")
+        }
+
+        /*
+        //基本判斷式 if-else
+        // confirm確認視窗，回ture或false
+        let ans = confirm("今天天氣好嗎?");
+        if (ans) {
+            alert("天氣好");
+        }
+        else {
+            alert("記得帶傘!^^")
+        }
+
+        // 三元運算式可以把if-else簡寫成這樣
+        ans ? alert("天氣好好好好") : alert("出門記得帶傘");
+        */
+
+        /*
+        //多條件式
+        let isRich = false;
+        let isTall = false;
+        let isPretty = true;
+        if (isRich || (isTall && isPretty)) {
+            alert("桃花開");
+        }
+        else {
+            alert("邊緣人");
+        }
+        */
+
+        /*
+        //判斷式條件的延伸
+        // prompt輸入視窗，回輸入的值
+        let answer = prompt("K大於Q，Q大於J，J大於10\n請問K Q J 10 誰最大?\n1.K   2.Q   3.J   4.10")
+        if (answer === "1") {
+            alert("恭喜答對了!");
+        }
+        else if (answer === "2" || answer === "3" || answer === "4") {
+            alert("你錯了!");
+        }
+        else {
+            alert("大錯特錯啊啊啊啊啊啊!");
+        }
+        */
+
+        // switch case
+        /*
+        let answer = prompt("K大於Q，Q大於J，J大於10\n請問K Q J 10 誰最大?\n1.K   2.Q   3.J   4.10");
+        switch (answer) {
+            case "1":
+                alert("恭喜答對了!");
+                break;
+            case "2", "3", "4":
+                alert("你錯了!");
+                break;
+            default:
+                alert("大錯特錯8787878787");
+                break;
+        }
+        */
+
+
+
+
+    </script>
+</body>
+
+</html>

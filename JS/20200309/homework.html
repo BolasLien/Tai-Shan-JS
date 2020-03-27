@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //作業
+        let floor = parseInt(prompt("輸入數字"));
+        for (let f = 1; f <= floor; f++) {
+            for (let i = 0; i < floor - f; i++) {
+                document.write("&nbsp;&nbsp;&nbsp;");
+            }
+            for (let i = 0; i < 2 * f - 1; i++) {
+                document.write("★");
+            }
+            document.write(`<br>`);
+        }
+
+        document.write(`<br>`);
+
+        //練習1
+        for (let f = 1; f <= floor; f++) {
+            for (let i = 0; i < f; i++) {
+                document.write("★");
+            }
+            document.write(`<br>`);
+        }
+
+        document.write(`<br>`);
+
+
+        //練習2
+        for (let f = 1; f <= floor; f++) {
+            for (let i = f; i <= floor; i++) {
+                document.write("★");
+            }
+            document.write(`<br>`);
+        }
+
+        document.write(`<br>`);
+
+        //練習3
+        let max = (floor + 1) / 2;
+        for (let f = 1; f <= max; f++) {
+            for (let i = 1; i <= f; i++) {
+                document.write("★");
+            }
+            document.write(`<br>`);
+        }
+        for (let f = 1; f < max; f++) {
+            for (let i = f; i < max; i++) {
+                document.write("★");
+            }
+            document.write(`<br>`);
+        }
+
+        document.write(`<br>`);
+
+        //練習4
+        max = (floor + 1) / 2;
+        for (let f = 1; f <= max; f++) {
+            for (let i = 0; i < max - f; i++) {
+                document.write("&nbsp;&nbsp;&nbsp;");
+            }
+            for (let i = 0; i < f * 2 - 1; i++) {
+                document.write("★");
+            }
+            document.write(`<br>`);
+        }
+        for (let f = 1; f < max; f++) {
+            for (let i = f; i < f * 2; i++) {
+                document.write("&nbsp;&nbsp;&nbsp;");
+            }
+            for (let i = 0; i < (max - f) * 2 - 1; i++) {
+                document.write("★");
+            }
+            document.write(`<br>`);
+        }
+
+        document.write(`<br>`);
+
+    </script>
+</body>
+
+</html>

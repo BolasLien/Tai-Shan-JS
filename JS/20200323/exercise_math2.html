@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //練習2 製作隨機數字 function，提供最小整數和最大整數，回傳一個區間內的隨機數字
+        let rand = (min, max) => {
+            let r = Math.random()
+            console.log("min= " + min + ", max= " + max + " ramdom= " + r)
+            return Math.round(r * (max - min) + min);
+        }
+
+        let result = rand(0, 100);
+        console.log("result = " + result)
+        document.write(`回傳一個區間內的隨機數字：${result}<br>`)
+
+    </script>
+</body>
+
+</html>

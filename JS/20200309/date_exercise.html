@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 日期練習
+        使用者可以輸入西元年、月、日，三個`prompt()`
+        顯示使用者輸入的是該年的第幾天
+
+        以1996/3/5為例
+        將前兩個月的天數加起來，再加上5天即可
+        需考慮閏年+1
+        某些月份的天數是30，某些月份的天數是31
+
+         */
+
+        let year = prompt("請輸入西元年");
+        let month = prompt("請輸入月份");
+        let day = prompt("請輸入日");
+        let date = 0;
+
+        for (let i = 1; i < month; i++) {
+
+            if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10) {
+                date += 31;
+            }
+            else if (i == 2) {
+                date += 28;
+                if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+                    date += 1;
+                }
+            }
+            else if (i == 4 || i == 6 || i == 9 || i == 11) {
+                date += 30;
+            }
+        }
+
+        date += parseInt(day);
+
+
+        document.write(`1. 這是西元${year}年的第${date}天<br>`);
+
+
+        let date2 = 0;
+        for (let i = 1; i < month; i++) {
+            if (month > 12)
+                break;
+
+            if (i == 2) {
+                date2 += 28;
+                if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+                    date2 += 1;
+                }
+            }
+            else if ((i <= 7 && i % 2 == 1) || (i >= 8 && i % 2 == 0)) {
+                date2 += 31;
+            }
+            else {
+                date2 += 30;
+            }
+        }
+        date2 += parseInt(day);
+
+        document.write(`2. 這是西元${year}年的第${date2}天`)
+
+
+    </script>
+</body>
+
+</html>
