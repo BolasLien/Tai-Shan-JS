@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="text"></h1>
+
+    <script>
+        let text = document.getElementById('text');
+
+        let inputTime = prompt("請輸入秒數")
+
+
+        if (isNaN(inputTime) || inputTime <= 0 || inputTime !== (inputTime | 0)) {
+            alert("輸入錯誤了喔")
+        }
+        else {
+            text.innerHTML += `剩餘${inputTime}秒<br>`;
+
+            let timer = setInterval(() => {
+                inputTime -= 1;
+                text.innerHTML += `剩餘${inputTime}秒<br>`;
+            }, 1000);
+
+            setTimeout(() => {
+                alert(`時間到了`)
+                clearInterval(timer)
+            }, inputTime * 1000);
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
