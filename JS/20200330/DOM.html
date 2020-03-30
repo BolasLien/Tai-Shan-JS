@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title">標題</h1>
+
+    <h2>第1個h2</h2>
+    <h2>第2個h2</h2>
+
+    <h3 class="myclass1">第1個h3</h3>
+    <h3 class="myclass1">第2個h3</h3>
+
+    <a href="http://google.com" id="link">連結</a>
+
+    <h4 id="byebye">刪掉</h4>
+
+    <ul id="ul1">
+        <li>1</li>
+        <li>2</li>
+        <li><a href="http://google.com">連結</a></li>
+    </ul>
+
+    <ul id="ul2">
+        <li>1</li>
+        <li id="myli1">2</li>
+        <li>3</li>
+    </ul>
+
+    <p id="myp" class="myclass1 myclass2">123456789</p>
+
+    <div id="mydiv">
+        lksdgjlksdjglksdj
+    </div>
+
+    <script>
+        // 用 id 抓 HTML 元素
+        const title = document.getElementById('title');
+        console.log(title.innerHTML)
+
+
+        //用標籤名稱抓 HTML 元素，回傳陣列
+        const h2 = document.getElementsByTagName("h2");
+        console.log(h2[0].innerText);
+        // 用for of 一次修改全部
+        for (let element of h2) {
+            element.innerText += "哈囉";
+        }
+
+
+        //用 class 名稱抓 HTML 元素，結果是陣列
+        //如果要一次選符合多個 class 的元素以空白分隔("myclass1 myclass2")
+        const myclass1 = document.getElementsByClassName("myclass1")
+        for (let element of myclass1) {
+            // .style.css名稱
+            // CSS名稱改駝峰式命名，例如background-color 改成 backgroundColor
+            element.style.color = "red";
+        }
+
+        // 用CSS選擇棄抓 HTML 元素
+        // querySelectorALL 取全部，結果是陣列
+        // querySelector 取第一個
+        const link = document.querySelector("#link")
+        console.log(link.href)
+        console.log(link.getAttribute("href"))
+        link.setAttribute("href", "https://fb.com")
+        link.href = "https://fb.com";
+
+        const byebye = document.getElementById("byebye");
+        byebye.remove();
+
+        // innerHTML 會將 HTML 內容以文字輸出
+        const ul1 = document.getElementById("ul1");
+        console.log(ul1.innerHTML)
+
+        // parentElement 父層
+        const a_in_ul1 = ul1.getElementsByTagName("a")[0];
+        a_in_ul1.parentElement.style.background = "green"
+
+        // children 子層，結果是陣列
+        const li_in_ul1 = ul1.children;
+        for (let element of li_in_ul1) {
+            element.style.border = "1px solid blue";
+        }
+
+        const myli1 = document.getElementById("myli1")
+        myli1.previousElementSibling.style.color = "blue"
+        myli1.nextElementSibling.style.color = "pink"
+
+        const myp = document.getElementById("myp")
+        console.log(myp.className)
+
+        myp.classList.add("myclass3")
+        myp.classList.remove("myclass2")
+        myp.classList.replace("myclass1", "myclass4")
+        myp.classList.toggle("myclass5")
+
+        const mydiv = document.getElementById("mydiv")
+        mydiv.insertAdjacentHTML("afterbegin", "<i>afterbegin</i>")
+        mydiv.insertAdjacentHTML("afterend", "<i>afterend</i>")
+        mydiv.insertAdjacentHTML("beforebegin", "<i>beforebegin</i>")
+        mydiv.insertAdjacentHTML("beforeend", "<i>beforeend</i>")
+
+    </script>
+</body>
+
+</html>
