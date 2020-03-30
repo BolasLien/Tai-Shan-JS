@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min)) + min;
+        }
+
+        // 解法1 
+        document.write(`解法1<br>`)
+        let a = [];
+
+        document.write(`A區:`)
+        for (let i = 0; i < 6; i++) {
+            let temp = rand(1, 38);
+
+            if (a.includes(temp)) {
+                i--;
+                continue;
+            }
+
+            a.push(temp);
+            document.write(temp + ",");
+        }
+
+        document.write(`<br>B區:${rand(1, 8)}<br>`)
+
+        //解法2 球池的概念
+        document.write(`<br> 解法2 <br>`)
+
+        //建立球池
+        let numbers = [];
+        for (let i = 1; i <= 38; i++) {
+            numbers.push(i);
+        }
+
+        document.write(`A區:`)
+        for (let i = 0; i < 6; i++) {
+            // 每次隨機取索引值，取完後移除抽完的那次
+            let temp = rand(0, 37 - i);
+            document.write(numbers[temp] + ",");
+            numbers.splice(temp, 1);
+        }
+
+        document.write(`<br>B區:${rand(1, 8)}<br>`)
+
+    </script>
+</body>
+
+</html>
