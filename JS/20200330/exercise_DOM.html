@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 製作倒數計時器 -->
+    <!-- 
+        使用者用 prompt() 輸入秒數數字
+        在網頁只能有一行字顯示 剩餘x秒，秒數不能變負數，顏色為藍色
+        時間到時文字變成紅色的 時間到
+     -->
+
+    <h1 id="h1"></h1>
+    <script>
+        const h1 = document.getElementById("h1");
+
+        let input = prompt("請輸入秒數數字")
+        if (isNaN(input) || input <= 0) {
+            alert("輸入錯誤了")
+        }
+        else {
+            h1.innerHTML = `倒數${input}秒`
+            let timer = setInterval(() => {
+                input--;
+                h1.style.color = "blue"
+                h1.innerHTML = `剩餘${input}秒`
+            }, 1000);
+
+            setTimeout(() => {
+                clearInterval(timer);
+                h1.style.color = "red"
+                h1.innerHTML = `時間到`
+            }, input * 1000);
+        }
+
+    </script>
+</body>
+
+</html>
