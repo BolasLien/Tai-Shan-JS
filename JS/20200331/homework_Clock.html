@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #body {
+            background: #eee;
+        }
+
+        #clock {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: auto;
+            padding: 7%;
+            position: relative;
+            border: 2px solid #ffffff;
+            box-shadow: 0px 0px 20px rgba(158, 158, 202, 0.5);
+        }
+
+        #hour {
+            position: absolute;
+            width: 20%;
+            height: 4px;
+            background: #0f4c75;
+            top: calc(50% - 2px);
+            left: 30%;
+            border-radius: 4px;
+            transform: rotate(0deg);
+            transform-origin: right center;
+            box-shadow: 0px 3px 5px rgba(158, 158, 202, 0.5);
+
+        }
+
+        #minute {
+            position: absolute;
+            width: 40%;
+            height: 4px;
+            background: #3282b8;
+            top: calc(50% - 2px);
+            left: 10%;
+            border-radius: 4px;
+            transform: rotate(0deg);
+            transform-origin: right center;
+            box-shadow: 0px 3px 5px rgba(158, 158, 202, 0.5);
+        }
+
+        #second {
+            position: absolute;
+            width: 48%;
+            height: 2px;
+            background: #bbe1fa;
+            top: calc(50% - 1px);
+            left: 2%;
+            border-radius: 2px;
+            transform: rotate(0deg);
+            transform-origin: right center;
+            box-shadow: 0px 3px 5px rgba(158, 158, 202, 0.5);
+        }
+
+        #text {
+            margin: auto;
+            position: relative;
+        }
+
+        #date {
+            width: 200px;
+            height: 50px;
+            margin: auto;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+            font-family: 'Share Tech Mono', monospace;
+            color: #1b262c;
+        }
+
+        #time {
+            width: 200px;
+            height: 100px;
+            margin: auto;
+            line-height: 100px;
+            text-align: center;
+            font-size: 50px;
+            font-family: 'Share Tech Mono', monospace;
+            color: #1b262c;
+        }
+
+
+        .filler {
+            background: #1b262c;
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 50%;
+            right: 0;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="filler"></div> -->
+    <div id="clock">
+        <div id="mark"></div>
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+    </div>
+    <div id="text">
+        <div id="date">2020-03-31</div>
+        <div id="time">00:00:00</div>
+    </div>
+
+
+
+    <script>
+        const hour = document.getElementById("hour");
+        const minute = document.getElementById("minute");
+        const second = document.getElementById("second");
+        const date = document.getElementById("date")
+        const time = document.getElementById("time")
+
+
+        const timeFixed = (num) => {
+            return num < 10 ? "0" + num : num;
+        }
+
+        const setDate = () => {
+            const now = new Date();
+            let chineseDay = ["天", "一", "二", "三", "四", "五", "六"];
+
+            hour.style.transform = `rotate(${now.getHours() * 30 + 90}deg)`;
+            minute.style.transform = `rotate(${now.getMinutes() * 6 + 90}deg)`;
+            second.style.transform = `rotate(${now.getSeconds() * 6 + 90}deg)`;
+
+            date.innerText = `${now.getFullYear()}-${timeFixed(now.getMonth() + 1)}-${now.getDate()} 星期${chineseDay[now.getDay()]}`
+
+            time.innerText = `${timeFixed(now.getHours())}:${timeFixed(now.getMinutes())}:${timeFixed(now.getSeconds())}`;
+        }
+
+        for (let i = 1; i <= 60; i++) {
+            mark.innerHTML += `<div></div>`
+            mark.lastChild.style.width = `2px`
+            mark.lastChild.style.height = `5%`;
+            mark.lastChild.style.position = "absolute";
+            mark.lastChild.style.transform = `rotate(${i * 6}deg) translateY(900%)`
+            mark.lastChild.style.top = `calc(48% - 2px)`;
+            mark.lastChild.style.left = `calc(50% - 2px)`;
+            mark.lastChild.style.background = "#bbe1fa"
+            mark.lastChild.style.transformOrigin = "right center";
+
+            if (i % 5 == 0) {
+                mark.lastChild.style.background = "#0f4c75"
+            }
+
+        }
+
+        setDate();
+        setInterval(setDate, 1000);
+    </script>
+</body>
+
+</html>
