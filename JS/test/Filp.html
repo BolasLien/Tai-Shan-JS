@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flip {
+            display: inline-block;
+            position: relative;
+            width: 60px;
+            height: 100px;
+            line-height: 100px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            background: #ffffff;
+            font-size: 66px;
+            color: #ffffff;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            font-family: "Helvetica Neue";
+        }
+
+        .flip .digital::before,
+        .flip .digital::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            background: #000000;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .flip .digital::before {
+            top: 0;
+            bottom: 50%;
+            border-radius: 10px 10px 0 0;
+            border-bottom: 1px solid #666;
+        }
+
+        .flip .digital::after {
+            top: 50%;
+            bottom: 0;
+            border-radius: 0 0 10px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flip down">
+        <div class="digital front number0"></div>
+        <div class="digital back number1"></div>
+    </div>
+</body>
+
+</html>
