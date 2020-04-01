@@ -208,7 +208,13 @@
 
 <body>
     <div class="single-demo">
-        <div class="flip down" id="flip">
+        <div class="flip down" id="flip1">
+            <div class="digital front number0"></div>
+            <div class="digital back number1"></div>
+        </div>
+    </div>
+    <div class="single-demo">
+        <div class="flip down" id="flip2">
             <div class="digital front number0"></div>
             <div class="digital back number1"></div>
         </div>
@@ -220,7 +226,8 @@
     </div>
 
     <script>
-        const flip = document.getElementById("flip")
+        const flip1 = document.getElementById("flip1")
+        const flip2 = document.getElementById("flip2")
         const backNode = document.querySelector(".back")
         const frontNode = document.querySelector(".front")
         const btn1 = document.getElementById("btn1");
