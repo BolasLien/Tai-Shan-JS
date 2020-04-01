@@ -21,6 +21,7 @@
             box-shadow: 0px 0px 20px rgba(158, 158, 202, 0.5);
         }
 
+
         #hour {
             position: absolute;
             width: 20%;
@@ -59,6 +60,17 @@
             transform: rotate(0deg);
             transform-origin: right center;
             box-shadow: 0px 3px 5px rgba(158, 158, 202, 0.5);
+        }
+
+        .mark {
+            position: absolute;
+            width: 5%;
+            height: 2px;
+            background: #000;
+            top: calc(50% - 1px);
+            left: 45%;
+            transform-origin: right center;
+            background: #bbe1fa;
         }
 
         #text {
@@ -104,7 +116,66 @@
 <body>
     <!-- <div class="filler"></div> -->
     <div id="clock">
-        <div id="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
+        <div class="mark"></div>
         <div id="hour"></div>
         <div id="minute"></div>
         <div id="second"></div>
@@ -122,6 +193,7 @@
         const second = document.getElementById("second");
         const date = document.getElementById("date")
         const time = document.getElementById("time")
+        const markList = document.getElementsByClassName("mark")
 
 
         const timeFixed = (num) => {
@@ -132,28 +204,30 @@
             const now = new Date();
             let chineseDay = ["天", "一", "二", "三", "四", "五", "六"];
 
-            hour.style.transform = `rotate(${now.getHours() * 30 + 90}deg)`;
-            minute.style.transform = `rotate(${now.getMinutes() * 6 + 90}deg)`;
-            second.style.transform = `rotate(${now.getSeconds() * 6 + 90}deg)`;
+            let nHour = now.getHours();
+            let nMinute = now.getMinutes();
+            let nSecond = now.getSeconds();
 
-            date.innerText = `${now.getFullYear()}-${timeFixed(now.getMonth() + 1)}-${now.getDate()} 星期${chineseDay[now.getDay()]}`
+            let nYear = now.getFullYear();
+            let nMonth = now.getMonth();
+            let nDate = now.getDate();
+            let nDay = now.getDay();
 
-            time.innerText = `${timeFixed(now.getHours())}:${timeFixed(now.getMinutes())}:${timeFixed(now.getSeconds())}`;
+            hour.style.transform = `rotate(${nHour * 30 + 90}deg)`;
+            minute.style.transform = `rotate(${nMinute * 6 + 90}deg)`;
+            second.style.transform = `rotate(${nSecond * 6 + 90}deg)`;
+
+            date.innerText = `${nYear}-${timeFixed(nMonth + 1)}-${timeFixed(nDate)} 星期${chineseDay[nDay]}`
+
+            time.innerText = `${timeFixed(nHour)}:${timeFixed(nMinute)}:${timeFixed(nSecond)}`;
         }
 
-        for (let i = 1; i <= 60; i++) {
-            mark.innerHTML += `<div></div>`
-            mark.lastChild.style.width = `2px`
-            mark.lastChild.style.height = `5%`;
-            mark.lastChild.style.position = "absolute";
-            mark.lastChild.style.transform = `rotate(${i * 6}deg) translateY(900%)`
-            mark.lastChild.style.top = `calc(48% - 2px)`;
-            mark.lastChild.style.left = `calc(50% - 2px)`;
-            mark.lastChild.style.background = "#bbe1fa"
-            mark.lastChild.style.transformOrigin = "right center";
+        for (let i = 0; i < 60; i++) {
+
+            markList[i].style.transform = `rotate(${i * 6 - 90}deg) translateX(calc(1000%))`
 
             if (i % 5 == 0) {
-                mark.lastChild.style.background = "#0f4c75"
+                markList[i].style.background = "#0f4c75"
             }
 
         }
