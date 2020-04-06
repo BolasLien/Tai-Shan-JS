@@ -14,11 +14,11 @@
 
         .controller {
             width: 200px;
-            height: 200px;
-            border: 1px solid #000;
+            /* height: 200px; */
             border-radius: 3px;
-            box-shadow: 2px 2px 5px #999;
+            box-shadow: 0px 0px 20px #999;
             margin: 20px auto;
+            padding: 5px;
         }
     </style>
 </head>
@@ -40,6 +40,7 @@
         <button class="btn">隨機</button>
         <div class="text">0</div>
 
+        <button id="randbtn">隨機顏色</button>
     </div>
 
     </div>
@@ -49,9 +50,20 @@
         const bars = document.getElementsByClassName("bar");
         const btns = document.getElementsByClassName("btn");
         const texts = document.getElementsByClassName("text");
+        const randbtn = document.getElementById("randbtn");
 
         const rand = (min, max) => {
             return Math.round(Math.random() * (max - min) + min);
+        }
+
+        randbtn.onclick = () => {
+            for (let i = 0; i < 3; i++) {
+                let r = rand(0, 255);
+                bars[i].value = r;
+                texts[i].innerText = r;
+            }
+
+            board.style.background = `rgb(${bars[0].value},${bars[1].value},${bars[2].value})`
         }
 
         for (let i in btns) {
