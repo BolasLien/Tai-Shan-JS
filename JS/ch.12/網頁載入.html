@@ -5,14 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #loading {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            background: mediumturquoise;
+            display: table;
+            transition: opacity 1s;
+        }
+
+        #loading-inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            color: gainsboro;
+            font-family: 'Microsoft JHengHei'
+        }
+    </style>
 </head>
 
 <body>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Very_Large_Array%2C_2012.jpg" alt="" srcset="">
-    <img src="https://image6.uhdpaper.com/wallpaper/sunset-sky-anime-scenery-uhdpaper.com-4K-6.1035.jpg" alt="">
+    <div id="loading">
+        <div id="loading-inner">
+            <img src="./loading.svg" alt="">
+            <h1>載入中</h1>
+        </div>
+    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Very_Large_Array%2C_2012.jpg">
+    <img src="https://image6.uhdpaper.com/wallpaper/sunset-sky-anime-scenery-uhdpaper.com-4K-6.1035.jpg">
 
 
     <script>
+
+        const loading = document.getElementById("loading");
+
         // 當載入狀態改變時
         // document.onreadystatechange
         // interactive: 載入完 HTML 標籤時
@@ -26,6 +57,12 @@
 
         window.onload = () => {
             console.log('window ok');
+            loading.style.opacity = 0;
+            setTimeout(() => {
+                loading.style.display = "none";
+            }, 1000);
+
+
         }
 
     </script>
