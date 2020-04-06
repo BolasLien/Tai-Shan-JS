@@ -24,6 +24,8 @@
     <hr>
 
     <a href="https://fb.com" id="fb">去 Facebook</a>
+    <br>
+    <p id="keytext"></p>
 
     <script>
         const goto = (link) => {
@@ -45,6 +47,12 @@
                 // console.log(event);
                 alert("上課不要看FB")
             }
+        }
+
+        const keytext = document.getElementById("keytext");
+        document.onkeydown = (event) => {
+            keytext.innerText = event.key;
+
         }
 
     </script>
