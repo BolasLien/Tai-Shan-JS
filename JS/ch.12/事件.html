@@ -10,7 +10,14 @@
 <body>
     <input type="button" value="點我" onclick="alert('你好')">
     <input type="button" value="點我看時間" onclick="this.value = new Date().toLocaleString('zh-TW')">
+    <input type="button" value="點我去 Google" onclick="goto('https://google.com')">
 
+    <script>
+        const goto = (link) => {
+            location.href = link;
+        }
+
+    </script>
 
 </body>
 
