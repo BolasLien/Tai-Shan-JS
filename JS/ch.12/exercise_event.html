@@ -12,13 +12,15 @@
         <button class="btn">剪刀</button>
         <button class="btn">石頭</button>
         <button class="btn">布</button>
+        <button id="clear">清空列表</button>
     </div>
 
     <ul id="result"></ul>
 
     <script>
         mora = ['剪刀', '石頭', '布']
-        btns = document.getElementsByClassName('btn')
+        const btns = document.getElementsByClassName('btn')
+        const clear = document.getElementById('clear')
 
         let result = document.getElementById('result');
 
@@ -30,7 +32,7 @@
             let r = rand(0, 2);
 
             let res = "";
-            if (r == p + 1) {
+            if (r == p + 1 || r == p - 2) {
                 res = `輸了`
             }
             else if (r == p) {
@@ -39,15 +41,17 @@
             else if (r == p - 1 || r == p + 2) {
                 res = `贏了`
             }
-            alert(`電腦出${mora[r]} 玩家出${mora[p]} ${res}`);
-            result.innerHTML += `<li>電腦出${mora[r]} 玩家出${mora[p]} ${res}</li>`;
+            alert(`玩家出${mora[p]} 電腦出${mora[r]} ${res}`);
+            result.innerHTML += `<li> 玩家出${mora[p]} 電腦出${mora[r]} ${res}</li>`;
         }
 
         for (let i in btns) {
             btns[i].onclick = () => {
-                getResult(i);
+                getResult(parseInt(i));
             }
         }
+
+        clear.onclick = () => { result.innerHTML = ""; }
 
 
     </script>
