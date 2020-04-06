@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #board {
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+
+        #controller {
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="board"></div>
+    <div id="controller">
+
+        <input type="range" min="0" max="255" step="1" class="bar" value="0">
+        <button class="btn">隨機</button>
+        <div class="text">0</div>
+
+        <input type="range" min="0" max="255" step="1" class="bar" value="0">
+        <button class="btn">隨機</button>
+        <div class="text">0</div>
+
+        <input type="range" min="0" max="255" step="1" class="bar" value="0">
+        <button class="btn">隨機</button>
+        <div class="text">0</div>
+    </div>
+
+    </div>
+
+    <script>
+        const board = document.getElementById('board')
+        const bars = document.getElementsByClassName("bar");
+        const btns = document.getElementsByClassName("btn");
+        const texts = document.getElementsByClassName("text");
+
+        const rand = (min, max) => {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+
+        for (let i in btns) {
+            btns[i].onclick = () => {
+                let r = rand(0, 255);
+                bars[i].value = r;
+                texts[i].innerText = r;
+                board.style.background = `rgb(${bars[0].value},${bars[1].value},${bars[2].value})`
+            }
+        }
+
+        for (let i in bars) {
+            bars[i].oninput = () => {
+                let r = bars[i].value;
+                texts[i].innerText = r;
+                board.style.background = `rgb(${bars[0].value},${bars[1].value},${bars[2].value})`
+            }
+        }
+
+        board.style.background = "rgb(0,0,0)"
+
+    </script>
+</body>
+
+</html>
