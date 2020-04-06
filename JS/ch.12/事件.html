@@ -20,6 +20,11 @@
     <input class="btn" type="button" value="點我">
     <input class="btn" type="button" value="點我">
     <input class="btn" type="button" value="點我">
+
+    <hr>
+
+    <a href="https://fb.com" id="fb">去 Facebook</a>
+
     <script>
         const goto = (link) => {
             location.href = link;
@@ -31,6 +36,17 @@
                 alert("點了按鈕");
             }
         }
+
+        const fb = document.getElementById("fb");
+        fb.onclick = (event) => {
+            const now = new Date();
+            if (now.getSeconds() % 2 == 1) {
+                event.preventDefault();
+                // console.log(event);
+                alert("上課不要看FB")
+            }
+        }
+
     </script>
 
 </body>
