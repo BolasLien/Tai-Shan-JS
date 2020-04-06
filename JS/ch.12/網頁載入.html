@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/Very_Large_Array%2C_2012.jpg" alt="" srcset="">
+    <img src="https://image6.uhdpaper.com/wallpaper/sunset-sky-anime-scenery-uhdpaper.com-4K-6.1035.jpg" alt="">
+
+
+    <script>
+        // 當載入狀態改變時
+        // document.onreadystatechange
+        // interactive: 載入完 HTML 標籤時
+        // complete: 整個網頁載入完時
+        // --------------------------------
+        // 當整個網頁載入完(連圖片都下載完)時
+        // window.onload
+        document.onreadystatechange = () => {
+            console.log(document.readyState);
+        }
+
+        window.onload = () => {
+            console.log('window ok');
+        }
+
+    </script>
+</body>
+
+</html>
