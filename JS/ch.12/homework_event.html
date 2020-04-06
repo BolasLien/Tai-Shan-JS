@@ -12,17 +12,21 @@
             margin: auto;
         }
 
-        #controller {
+        .controller {
             width: 200px;
             height: 200px;
-            margin: auto;
+            border: 1px solid #000;
+            border-radius: 3px;
+            box-shadow: 2px 2px 5px #999;
+            margin: 20px auto;
         }
     </style>
 </head>
 
 <body>
+
     <div id="board"></div>
-    <div id="controller">
+    <div class="controller">
 
         <input type="range" min="0" max="255" step="1" class="bar" value="0">
         <button class="btn">隨機</button>
@@ -35,6 +39,7 @@
         <input type="range" min="0" max="255" step="1" class="bar" value="0">
         <button class="btn">隨機</button>
         <div class="text">0</div>
+
     </div>
 
     </div>
@@ -66,7 +71,7 @@
             }
         }
 
-        board.style.background = "rgb(0,0,0)"
+        board.style.background = `rgb(${bars[0].value},${bars[1].value},${bars[2].value})`
 
     </script>
 </body>
