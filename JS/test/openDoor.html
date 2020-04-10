@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #door {
+            margin: auto;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            background-color: #000;
+
+        }
+
+        #doorOpen {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: #00f;
+            transform-origin: left;
+            animation: doorOpen 2s infinite forwards;
+        }
+
+        @keyframes doorOpen {
+            0% {
+                transform: perspective(500px) rotateY(0deg);
+            }
+
+            100% {
+                transform: perspective(500px) rotateY(-90deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="door">
+        <div id="doorOpen"></div>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>
