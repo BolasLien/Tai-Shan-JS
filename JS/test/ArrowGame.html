@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #game {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #top {
+            margin: auto;
+            width: 100vw;
+            height: 90px;
+            background: #0000ff;
+        }
+
+        #top #game-score {
+            margin: auto;
+            width: 400px;
+            height: 70px;
+            background: #aaaaaa;
+            text-align: center;
+            line-height: 70px;
+            font-size: 60px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #top #game-time {
+            margin: auto;
+            width: 400px;
+            height: 20px;
+            background: #fff;
+            position: relative;
+
+        }
+
+        #top #game-time #time-bar {
+            left: 10px;
+            width: 380px;
+            height: 18px;
+            border: 1px solid #000;
+            position: absolute;
+        }
+
+        #top #game-time #time-fill {
+            width: 18px;
+            height: 18px;
+            background: #f00;
+            position: absolute;
+
+        }
+
+        #state {
+            width: 100vw;
+            height: 150px;
+            background: #00ff00;
+            text-align: center;
+        }
+
+        #state::before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            width: 0;
+            vertical-align: middle;
+        }
+
+        #state #info {
+            width: 500px;
+            height: 120px;
+            background-color: #fff;
+            display: inline-block;
+            vertical-align: middle;
+
+        }
+
+        #infotext {
+            line-height: 120px;
+            font-size: 30px;
+            font-family: 'Microsoft JhengHei';
+            text-shadow: 3px 3px 2px #999;
+        }
+
+        .perfect {
+            content: 'Perfect';
+            color: purple;
+        }
+
+        .good {
+            content: 'Good';
+            color: gold;
+
+        }
+
+        .bad {
+            content: 'Bad';
+            color: green;
+
+        }
+
+        .miss {
+            content: 'Miss';
+            color: maroon;
+
+        }
+
+        #input-area {
+            width: 100vw;
+            height: 200px;
+            background: #ff0000;
+        }
+
+        #input-area #arrow {
+            width: 500px;
+            height: 120px;
+            background: #aaa;
+            margin: auto;
+        }
+
+        .arrow {
+            width: 500px;
+            height: 100px;
+            background: #fff;
+            line-height: 80px;
+        }
+
+        #input-area #space {
+            width: 500px;
+            height: 40px;
+            background: #fff;
+            margin: auto;
+        }
+
+        #input-area #space #space-bar {
+            width: 300px;
+            height: 20px;
+            border: 1px solid #000;
+            position: relative;
+            margin: auto;
+        }
+
+        #input-area #space #space-bar #collider {
+            width: 20px;
+            height: 18px;
+            position: absolute;
+            border: 1px solid #000;
+            left: 80%;
+
+        }
+
+        #input-area #space #space-bar #box {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #f00;
+        }
+
+        #input-area #start-btn {
+            width: 500px;
+            height: 40px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game">
+        <div id="top">
+            <div id="game-score">0</div>
+            <div id="game-time">
+                <div id="time-bar">
+                    <div id="time-fill"></div>
+                </div>
+            </div>
+        </div>
+        <div id="state">
+            <div id="info">
+                <div id="infotext" class="infotext">請按「開始遊戲」按鈕</div>
+            </div>
+        </div>
+        <div id="input-area">
+            <div id="arrow">
+                <table class="arrow" border="1">
+                    <tr id="arrow-area">
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </table>
+            </div>
+            <div id="space">
+                <div id="space-bar">
+                    <div id="collider"></div>
+                    <div id="box"></div>
+                </div>
+            </div>
+            <button id="start-btn">開始遊戲</button>
+
+        </div>
+
+    </div>
+
+    <script>
+        const startBtn = document.getElementById('start-btn');
+        const arrowArea = document.getElementById('arrow-area');
+        const infotext = document.getElementById('infotext');
+        const spaceBox = document.getElementById('box');
+        const timeFill = document.getElementById('time-fill')
+
+        let isPlaying = false;
+        let score = 0;
+        let defaultTime = 30;
+        let timeleft = defaultTime;
+        let gameTimer = 0;
+
+
+
+        let arrow = ["↑", "↓", "←", "→"];
+        let examArrow = [];
+        let examTime = 0;
+
+        startBtn.onclick = () => {
+            startBtn.disabled = true;
+            init();
+            isPlaying = true;
+            readyInfo();
+
+
+
+
+        }
+
+        const readyInfo = () => {
+            let info = ["Are You Ready?", "3", "2", "1", "Go!", ""]
+            let i = 0;
+            let timer = 0;
+            timer = setInterval(() => {
+                infotext.innerText = info[i];
+                i++;
+
+                if (i == info.length) {
+                    clearInterval(timer);
+                    game();
+                }
+            }, 1000)
+        }
+
+        const game = () => {
+            gameTimer = setInterval(gameTimeLeft, 1000);
+
+        }
+
+        const gameTimeLeft = () => {
+            timeleft--;
+            if (timeleft == 0) {
+                clearInterval(gameTimer);
+                infotext.innerText = "Time Out!";
+                startBtn.disabled = false;
+                isPlaying = false;
+            }
+
+            timeFill.style.width = `${((defaultTime - timeleft) / defaultTime) * 100}%`;
+        }
+
+        const init = () => {
+            arrowArea.innerHTML = "";
+            timeleft = defaultTime;
+            timeFill.style.width = `0%`;
+        }
+        const clearGame = () => {
+
+        }
+
+        const createExam = (num) => {
+            for (let i = 0; i < num; i++) {
+                let r = Math.floor(Math.random() * 4);
+                arrowArea.innerHTML += `<td>${arrow[r]}</td>`;
+                examArrow.push(arrow[r]);
+            }
+
+            examTime = 1 + num * 0.95;
+        }
+
+        onkeydown = (evnet) => {
+            if (isPlaying)
+                console.log(event.key);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
