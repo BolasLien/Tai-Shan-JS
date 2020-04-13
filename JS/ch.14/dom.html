@@ -47,6 +47,12 @@
             $("#link1").attr("href", "https://google.com")
             $("#link1").text("Google")
             console.log($("#link1").attr("href"));
+
+            // .css(樣式名,值)
+            // 如果沒設定值就是取值
+            $("h1").eq(1).css("color", "red");
+            $("#link1").css({ "font-size": '50px', "color": "blue" })
+            console.log($("#link1").css("color"))
         })
     </script>
 </body>
