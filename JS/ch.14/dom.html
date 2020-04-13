@@ -11,6 +11,8 @@
     <h1>111111</h1>
     <h1>222222</h1>
     <h1>333333</h1>
+    <input type="text" name="" id="input1">
+    <a href="" id="link1"></a>
     <script src="jquery-3.5.0.min.js"></script>
     <script>
         //當讀取完頁面的 HTML 內容後
@@ -36,6 +38,15 @@
             $("h1").eq(0).html('<i>eq0</i>')
             console.log($("h1").eq(0).html());
 
+            // .val() = value
+            // .val() 如果括號內有東西就是改值，沒東西就是取值
+            $("#input1").val('123456')
+
+            // .attr(屬姓名,值)
+            // 沒設定值就是取值
+            $("#link1").attr("href", "https://google.com")
+            $("#link1").text("Google")
+            console.log($("#link1").attr("href"));
         })
     </script>
 </body>
