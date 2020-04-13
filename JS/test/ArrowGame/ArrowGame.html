@@ -225,19 +225,16 @@
 
 
 
-        let arrow = ["↑", "↓", "←", "→"];
         let examArrow = [];
         let examTime = 0;
+        let examKeyCode = [];
+        let inputKey = [];
 
         startBtn.onclick = () => {
             startBtn.disabled = true;
             init();
             isPlaying = true;
             readyInfo();
-
-
-
-
         }
 
         const readyInfo = () => {
@@ -257,7 +254,12 @@
 
         const game = () => {
             gameTimer = setInterval(gameTimeLeft, 1000);
+            createExam(5);
 
+            let timer = 0;
+            timer = setTimeout(() => {
+                clearTimeout(timer);
+            }, examTime)
         }
 
         const gameTimeLeft = () => {
@@ -267,10 +269,6 @@
                 infotext.innerText = "Time Out!";
                 startBtn.disabled = false;
                 isPlaying = false;
-            }
-
-            if (timeleft % 1000 == 0) {
-                console.log("timeleft= " + timeleft);
             }
 
             timeFill.style.width = `${((efaultTime - timeleft) / defaultTime) * 100}%`;
@@ -286,18 +284,28 @@
         }
 
         const createExam = (num) => {
+            let arrow = ["↑", "↓", "←", "→"];
+            let keycode = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
+
             for (let i = 0; i < num; i++) {
                 let r = Math.floor(Math.random() * 4);
                 arrowArea.innerHTML += `<td>${arrow[r]}</td>`;
                 examArrow.push(arrow[r]);
+                examKeyCode.push(keycode[r]);
             }
 
             examTime = 1 + num * 0.95;
         }
 
-        onkeydown = (evnet) => {
-            if (isPlaying)
-                console.log(event.key);
+        onkeydown = (event) => {
+            if (isPlaying) {
+                inputKey.push(event.code);
+                checkInput(event.code);
+            }
+        }
+
+        const checkInput = (key) => {
+
         }
 
 
