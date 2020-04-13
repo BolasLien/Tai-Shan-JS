@@ -134,6 +134,9 @@
             // .closest() 往上找，直到找到符合()選擇器的第一個`，從目前開始找
             $("#myli").parent().css("background", "blue")
             $("#myspan").closest("li").css("background", "green")
+
+            $("#myli").siblings().remove();
+
         })
     </script>
 </body>
