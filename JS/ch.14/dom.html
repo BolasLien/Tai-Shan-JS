@@ -24,7 +24,7 @@
     <a href="" id="link1"></a>
     <ul id="ul1">
         <li>1</li>
-        <li>2</li>
+        <li class="green">2</li>
         <li>3</li>
         <li>4</li>
         <li>5</li>
@@ -79,6 +79,15 @@
             // .find(CSS選擇器)
             // 在東西裡面找所有符合選擇器的東西
             $("#ul1").find("li").eq(2).css("color", "red")
+
+            // .prev() 同一層的上一個東西
+            // .prevAll() 同一層的所有上面的東西，()裡面可以放選擇器篩選
+            // .next() 同一層的下一個東西
+            // .nextAll() 同一層的所有下面的東西，()裡面可以放選擇器篩選
+            $("#ul1 li").eq(2).prev(".green").addClass("big");
+
+            // .siblings() 同一層的其他東西，()裡面可以放選擇器
+            $("#ul1 .green").siblings().css("color", "blue");
         })
     </script>
 </body>
