@@ -29,6 +29,28 @@
         <li>4</li>
         <li>5</li>
     </ul>
+    <ul id="ul2">
+        <li>1</li>
+        <li>2
+            <ul id="ul2-2">
+                <li>1</li>
+                <li>
+                    <span id="myspan">2</span>
+                </li>
+                <li>3</li>
+            </ul>
+        </li>
+        <li>3
+            <ul id="ul2-2">
+                <li>1</li>
+                <li id="myli">2</li>
+                <li>3</li>
+            </ul>
+        </li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <input type="button" value="按我" id="btn1">
     <script src="jquery-3.5.0.min.js"></script>
     <script>
         //當讀取完頁面的 HTML 內容後
@@ -88,6 +110,30 @@
 
             // .siblings() 同一層的其他東西，()裡面可以放選擇器
             $("#ul1 .green").siblings().css("color", "blue");
+
+            // 用事件名當函式
+            // $("#btn1").click(() => {
+            // })
+
+            // 有些事件沒有事件名函式，要用 .on(事件,function)
+            // $("#btn1").on("click", () => {
+            // })
+
+            $("#btn1").click(() => {
+                // .prepend() 在同一層最前面加入新的 html
+                // .append() 在同一層最後面加入新的 html
+                $("#ul1").prepend("<li>前面新的</li>")
+                $("#ul1").append("<li>後面新的</li>")
+
+                // $("h1").eq(1).prepend("前面新的")
+                // $("h1").eq(1).append("後面新的")
+            })
+
+            // .parent() 上面一層
+            // .parents() 上面所有，()裡面可以放選擇器篩選
+            // .closest() 往上找，直到找到符合()選擇器的第一個`，從目前開始找
+            $("#myli").parent().css("background", "blue")
+            $("#myspan").closest("li").css("background", "green")
         })
     </script>
 </body>
