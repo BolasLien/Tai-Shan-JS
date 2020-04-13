@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .green {
+            color: green;
+        }
+
+        .big {
+            font-size: 50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,6 +62,12 @@
             $("h1").eq(1).css("color", "red");
             $("#link1").css({ "font-size": '50px', "color": "blue" })
             console.log($("#link1").css("color"))
+
+            // .addClass() 新增 class
+            // .removeClass() 移除 class
+            $("h1").eq(0).addClass("green big")
+            console.log($("h1").eq(0).hasClass("green"));
+
         })
     </script>
 </body>
