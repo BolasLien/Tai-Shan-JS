@@ -31,6 +31,11 @@
             $("h1").eq(2).text('eq2');
             console.log($("h1").eq(2).text());
 
+            // .html() = innerHtml
+            // .html() 如果括號內有東西就是改文字，沒東西就是取文字
+            $("h1").eq(0).html('<i>eq0</i>')
+            console.log($("h1").eq(0).html());
+
         })
     </script>
 </body>
