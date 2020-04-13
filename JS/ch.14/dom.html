@@ -22,6 +22,13 @@
     <h1>333333</h1>
     <input type="text" name="" id="input1">
     <a href="" id="link1"></a>
+    <ul id="ul1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
     <script src="jquery-3.5.0.min.js"></script>
     <script>
         //當讀取完頁面的 HTML 內容後
@@ -65,9 +72,13 @@
 
             // .addClass() 新增 class
             // .removeClass() 移除 class
+            // .hasClass() 有沒有指定的class
             $("h1").eq(0).addClass("green big")
             console.log($("h1").eq(0).hasClass("green"));
 
+            // .find(CSS選擇器)
+            // 在東西裡面找所有符合選擇器的東西
+            $("#ul1").find("li").eq(2).css("color", "red")
         })
     </script>
 </body>
