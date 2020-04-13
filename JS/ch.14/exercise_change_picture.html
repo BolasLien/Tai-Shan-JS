@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .picture {
+            width: 200px;
+            height: 200px;
+            background-repeat: no-repeat;
+            background-size: 200px 200px;
+            background-image: url(./0102.jpg);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="pic" class="picture xiao-zhang"></div> -->
+    <div id="pic" class="picture"></div>
+
+    <input type="button" value="點我變書曼" id="btn">
+
+    <script src="jquery-3.5.0.min.js"></script>
+    <script>
+        let changePic = false;
+
+        $("#btn").click(function () {
+            changePic = !changePic;
+
+            $("#pic").css("background-image", changePic ? "url(./0507.jpg)" : "url(./0102.jpg)")
+
+            $(this).val(changePic ? "點我變校長" : "點我變書曼");
+        })
+    </script>
+</body>
+
+</html>

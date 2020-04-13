@@ -269,7 +269,11 @@
                 isPlaying = false;
             }
 
-            timeFill.style.width = `${((defaultTime - timeleft) / defaultTime) * 100}%`;
+            if (timeleft % 1000 == 0) {
+                console.log("timeleft= " + timeleft);
+            }
+
+            timeFill.style.width = `${((efaultTime - timeleft) / defaultTime) * 100}%`;
         }
 
         const init = () => {
