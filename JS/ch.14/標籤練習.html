@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="健康新知" class="btn">
+    <input type="button" value="菸害防制" class="btn">
+    <input type="button" value="癌症防治" class="btn">
+    <input type="button" value="慢性病防治" class="btn">
+
+    <div class="tab">健康新知</div>
+    <div class="tab">菸害防制</div>
+    <div class="tab">癌症防治</div>
+    <div class="tab">慢性病防治</div>
+
+    <script src="jquery-3.5.0.min.js"></script>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                const index = $(this).index();
+                $(".tab").hide();
+                $(".tab").eq(index).show();
+            })
+
+            $(".btn").eq(0).chick();
+        })
+    </script>
+</body>
+
+</html>

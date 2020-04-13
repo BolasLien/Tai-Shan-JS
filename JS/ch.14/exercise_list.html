@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 代辦清單 -->
+    <!-- 一個文字輸入欄位，在欄位輸入文字後，點按鈕會將輸入欄位的值新增到ul -->
+    <!-- 每一項都有刪除按鈕，點即時可以刪除那個按鈕的項目 -->
+    <h1>代辦清單</h1>
+
+    <input type="text" name="" id="input-text">
+    <input type="button" value="新增" id="add-btn">
+    <ul id="list"></ul>
+
+    <script src="jquery-3.5.0.min.js"></script>
+    <script>
+        $("#add-btn").click(function () {
+            let btn = $("<input type='button' value='x'>");
+            btn.click(function () {
+                this.closest("li").remove();
+            })
+
+            let li = $("<li></li>");
+            li.text($("#input-text").val());
+            li.append(btn);
+
+
+            $("#list").append(li);
+            $("#input-text").val("");
+
+        })
+    </script>
+</body>
+
+</html>
