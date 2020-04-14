@@ -43,7 +43,39 @@
     <script src="jquery-3.5.0.min.js"></script>
     <script>
         $(function () {
+            let now = 0;
+            const total = $("#imgs img").length;
+            $("#imgs").css("width", total * 400);
 
+            $("#right").click(function () {
+
+
+                if (now < total - 1) {
+                    now++;
+                    const move = now * 400;
+                    $("#imgs").stop(true, true)
+                    $("#imgs").animate({ left: `-${move + 50}px` }, 1000).animate({ left: `-${move}px` }, 300)
+                }
+            })
+
+
+            $("#left").click(function () {
+
+
+                if (now > 0) {
+                    now--;
+                    const move = now * 400;
+                    $("#imgs").stop(true, true)
+
+                    if (move == 0) {
+                        $("#imgs").animate({ left: `${move + 50}px` }, 1000).animate({ left: `-${move}px` }, 300)
+                    }
+                    else {
+                        $("#imgs").animate({ left: `-${move - 50}px` }, 1000).animate({ left: `-${move}px` }, 300)
+                    }
+
+                }
+            })
         })
     </script>
 </body>
