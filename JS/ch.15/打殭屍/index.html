@@ -43,7 +43,7 @@
             return Math.round(Math.random() * num);
         }
 
-        const movezb = () => {
+        const movezb = (zbid) => {
             $(`#zb${zbid}`).animate({
                 top: rand(70) + "%",
                 left: rand(70) + "%"
