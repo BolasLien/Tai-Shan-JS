@@ -25,7 +25,7 @@
 
 <body>
     <div id="game"></div>
-    <input type="button" value="開始遊戲">
+    <input type="button" value="開始遊戲" id="btn-start">
     <p>分數：<span id="text-score">0</span></p>
     <p>剩餘時間：<span id="text-time">10</span>秒</p>
     <script src="../jquery-3.5.0.min.js"></script>
@@ -40,8 +40,75 @@
         let zbid = 0;
 
         const rand = (num) => {
-            return Math.round(Math.random().num);
+            return Math.round(Math.random() * num);
         }
+
+        const movezb = () => {
+            $(`#zb${zbid}`).animate({
+                top: rand(70) + "%",
+                left: rand(70) + "%"
+            }, 3000, function () {
+                movezb(zbid);
+            })
+        }
+
+        $("#btn-start").click(function () {
+            // 停用開始按鈕
+            $(this).attr("disabled", true);
+
+            // 重設
+            score = 0;
+            $("#text-score").text(score);
+            timeleft = 10;
+            $("#text-time").text(timeleft);
+
+            // 遊戲倒數
+            gametimer = setInterval(() => {
+                // 倒數
+                timeleft--;
+                $("#text-time").text(timeleft);
+
+                if (timeleft == 0) {
+                    clearInterval(gametimer);
+                    // 啟用開始按鈕
+                    $(this).attr("disabled", false);
+                    setTimeout(() => {
+                        alert("時間到");
+                    }, 100);
+                    // 清場
+                    $("#game img").remove();
+                    zbid = 0;
+                }
+                else {
+
+                    // 隨機
+                    const num = rand(10);
+
+                    // 如果抽到數字大於5，生一個殭屍
+                    if (num > 5) {
+                        console.log(zbid);
+                        $("#game").append(`<img src="./zombie.gif" id="zb${zbid}">`);
+                        $(`#zb${zbid}`).css({
+                            top: rand(70) + "%",
+                            left: rand(70) + "%"
+                        })
+                        movezb(zbid)
+
+                        zbid++;
+                    }
+                }
+
+            }, 1000);
+
+            $("#game").on("click", "img", function () {
+                $(this).attr("src", "./blood.png")
+                $(this).stop();
+                $(this).css("pointer-events", "none");
+
+                score++;
+                $("#text-score").text(score);
+            })
+        })
     </script>
 </body>
 
