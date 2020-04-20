@@ -12,14 +12,14 @@
             /* 設定子元素在3d空間內 */
             transform-style: preserve-3d;
             position: relative;
-            transform: rotateY(0deg);
+            /* 整張卡片的旋轉 */
+            transform: rotateY(180deg);
             transition: .5s;
         }
 
         .front {
             width: 100%;
             height: 100%;
-            background-image: url(./cards/1H.jpg);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -29,22 +29,19 @@
         .back {
             width: 100%;
             height: 100%;
-            background-image: url(./cards/red_back.jpg);
+            background-image: url(./cards/purple_back.jpg);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             position: absolute;
-            /* 把<div>bacl轉到<div>front背面 */
+            /* 把 <div>back 轉到 <div>front 背面 */
             transform: rotateY(180deg);
         }
     </style>
 </head>
 
 <body>
-    <div class="card">
-        <div class="front"></div>
-        <div class="back"></div>
-    </div>
+
 </body>
 
 </html>
