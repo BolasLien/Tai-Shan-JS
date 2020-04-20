@@ -52,11 +52,25 @@
     <script src="./jquery-3.5.0.min.js"></script>
     <script>
         $(function () {
+            // 產生16張卡片
             for (let i = 0; i < 16; i++) {
                 $("#game").append(`<div class="card">
                     <div class="front"></div>
                     <div class="back"></div>
                     </div>`)
+            }
+
+            for (let i = 0; i < $(".card").length; i++) {
+                let num = i % ($(".card").length / 2) + 1;
+                $(".card").eq(i).find(".front").css("background-image", `url(./cards/${num}h.jpg)`)
+
+                $(".card").eq(i).attr("data-card", num);
+
+
+                // 隨機抽一張牌，放到目前迴圈的牌後面
+                let target = Math.floor(Math.random() * $(".card").length);
+                $(".card").eq(target).insertAfter($(".card").eq(i));
+
             }
         })
     </script>
