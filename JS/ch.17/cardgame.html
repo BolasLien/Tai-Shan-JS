@@ -44,6 +44,10 @@
             width: 480px;
             margin: auto;
         }
+
+        .open {
+            transform: rotateY(0deg);
+        }
     </style>
 </head>
 
@@ -52,7 +56,7 @@
     <script src="./jquery-3.5.0.min.js"></script>
     <script>
         $(function () {
-            // 產生16張卡片
+            // 產生16張卡片的標籤
             for (let i = 0; i < 16; i++) {
                 $("#game").append(`<div class="card">
                     <div class="front"></div>
@@ -60,18 +64,28 @@
                     </div>`)
             }
 
+            // 把卡片製作出來
             for (let i = 0; i < $(".card").length; i++) {
                 let num = i % ($(".card").length / 2) + 1;
                 $(".card").eq(i).find(".front").css("background-image", `url(./cards/${num}h.jpg)`)
 
                 $(".card").eq(i).attr("data-card", num);
-
-
-                // 隨機抽一張牌，放到目前迴圈的牌後面
-                let target = Math.floor(Math.random() * $(".card").length);
-                $(".card").eq(target).insertAfter($(".card").eq(i));
-
             }
+
+            // 做10次隨機位置
+            for (let i = 0; i < 10; i++) {
+                // 隨機抽一張牌，放到隨機的位置
+                let target = Math.floor(Math.random() * $(".card").length);
+                let dist = Math.floor(Math.random() * $(".card").length);
+                $(".card").eq(target).insertAfter($(".card").eq(dist));
+            }
+
+            $(".card").on('click', function () {
+                // 如果以翻開的牌數量小於2，且這張還沒翻開
+                if ($(".open").length < 2 && !$(this).hasClass("open")) {
+                    $(this).addClass("open");
+                }
+            })
         })
     </script>
 </body>
