@@ -38,6 +38,7 @@
             position: absolute;
             /* 把 <div>back 轉到 <div>front 背面 */
             transform: rotateY(180deg);
+            backface-visibility: hidden;
         }
 
         #game {
@@ -96,7 +97,7 @@
 
                     // 如果兩張牌一樣
                     if ($(".open").eq(0).find(".front").css("background-image") == $(".open").eq(1).find(".front").css("background-image")) {
-                        $(".open").fadeTo(1000, 0).addClass("ok");
+                        $(".open").fadeTo(500, 0).addClass("ok");
                     }
 
                     if ($(".ok").length == $(".card").length) {
