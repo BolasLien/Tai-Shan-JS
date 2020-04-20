@@ -12,9 +12,11 @@
             /* 設定子元素在3d空間內 */
             transform-style: preserve-3d;
             position: relative;
-            /* 整張卡片的旋轉 */
+            /* 整張卡片旋轉180來蓋牌 */
             transform: rotateY(180deg);
             transition: .5s;
+            float: left;
+            margin: 10px;
         }
 
         .front {
@@ -37,11 +39,27 @@
             /* 把 <div>back 轉到 <div>front 背面 */
             transform: rotateY(180deg);
         }
+
+        #game {
+            width: 480px;
+            margin: auto;
+        }
     </style>
 </head>
 
 <body>
-
+    <div id="game"></div>
+    <script src="./jquery-3.5.0.min.js"></script>
+    <script>
+        $(function () {
+            for (let i = 0; i < 16; i++) {
+                $("#game").append(`<div class="card">
+                    <div class="front"></div>
+                    <div class="back"></div>
+                    </div>`)
+            }
+        })
+    </script>
 </body>
 
 </html>
