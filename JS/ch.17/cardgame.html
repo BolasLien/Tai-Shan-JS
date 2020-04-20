@@ -54,6 +54,7 @@
 <body>
     <div id="game"></div>
     <script src="./jquery-3.5.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script>
         $(function () {
             // 產生16張卡片的標籤
@@ -84,6 +85,29 @@
                 // 如果以翻開的牌數量小於2，且這張還沒翻開
                 if ($(".open").length < 2 && !$(this).hasClass("open")) {
                     $(this).addClass("open");
+                }
+
+                // 翻開兩張牌的時候
+                if ($(".open").length == 2) {
+                    // 過一秒鐘後翻回來
+                    setTimeout(() => {
+                        $(".open").removeClass("open");
+                    }, 1000);
+
+                    // 如果兩張牌一樣
+                    if ($(".open").eq(0).find(".front").css("background-image") == $(".open").eq(1).find(".front").css("background-image")) {
+                        $(".open").fadeTo(1000, 0).addClass("ok");
+                    }
+
+                    if ($(".ok").length == $(".card").length) {
+                        setTimeout(() => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: '恭喜',
+                                text: '恭喜過關'
+                            })
+                        }, 1000);
+                    }
                 }
             })
         })
