@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 建立 XHR
+        let xhr = new XMLHttpRequest();
+        // 設定請求方式與網址
+        xhr.open("get", "https://kktix.com/events.json");
+
+        // 設定成功時執行的 function
+        xhr.onload = () => {
+            let json = JSON.parse(xhr.responseText);
+            for (let value of json.entry) {
+                let str = "";
+                str = value.title;
+                if (str.includes("❤戀愛大學❤"))
+                    document.write(value.title + "<br>");
+
+            }
+
+        }
+        // 設定失敗時執行的 function
+        xhr.onerror = (error) => {
+            console.log(error);
+        }
+        // 送出請求
+        xhr.send();
+        /***********************************************************/
+
+        // 建立 XHR
+        let xhr2 = new XMLHttpRequest();
+        // 設定請求方式與網址
+        xhr2.open("post", "https://jsonplaceholder.typicode.com/posts");
+        xhr2.setRequestHeader("content-type", "application/json")
+        // 設定成功時執行的 function
+        xhr2.onload = () => {
+            let json = JSON.parse(xhr2.responseText);
+            console.log(json);
+        }
+        // 設定失敗時執行的 function
+        xhr2.onerror = (error) => {
+            console.log(error);
+        }
+        // 送出請求
+        xhr2.send(JSON.stringify({
+            "title": "aaaaa",
+            "body": "bbbb",
+            "userid": 1
+
+        }));
+
+    </script>
+</body>
+
+</html>
