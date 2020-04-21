@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        axios.get("https://kktix.com/events.json")
+            // 成功時的function
+            .then((response) => {
+                let json = response.data;
+                document.write("<table border=1>")
+                document.write("<tr>")
+                document.write("<td>活動名稱</td>");
+                document.write("<td>活動敘述</td>");
+                document.write("<td>時間地點</td>");
+                document.write("</tr>")
+                for (let value of json.entry) {
+                    let str = "";
+                    str = value.title;
+                    if (str.includes("❤戀愛大學❤")) {
+                        document.write("<tr>")
+                        document.write("<td>" + value.title + "</td>");
+                        document.write("<td>" + value.summary + "</td>");
+                        document.write("<td>" + value.content + "</td>");
+                        document.write("</tr>")
+
+                    }
+                }
+                document.write("</table>")
+
+            })
+            // 失敗時的function
+            .catch((err) => {
+                console.log(err);
+
+            })
+            // 不管成功失敗都會執行
+            .then(() => {
+                console.log("請求完畢")
+            })
+    </script>
+</body>
+
+</html>
