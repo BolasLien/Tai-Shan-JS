@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            url: "https://kktix.com/events.json",
+            method: "GET",
+            // 回來資料的型態
+            dataType: 'json',
+            success: function (response) {
+                console.log(response.title);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        })
+
+        // 簡寫版，沒有error function
+        $.get("https://kktix.com/events.json", function (response) {
+            console.log(response.title);
+        })
+
+        /**********************************************/
+
+        $.ajax({
+            url: "https://jsonplaceholder.typicode.com/posts",
+            method: "POST",
+            data: {
+                "title": "aaaaa",
+                "body": "bbbb",
+                "userid": 1
+            },
+            // 回來資料的型態
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+            },
+            error: function () {
+                console.log("無法取得資料");
+            }
+        })
+
+        $.post("https://jsonplaceholder.typicode.com/posts", {
+            "title": "aaaaa",
+            "body": "bbbb",
+            "userid": 1
+        }, function (response) {
+            console.log(response);
+        }, "json")
+    </script>
+</body>
+
+</html>
