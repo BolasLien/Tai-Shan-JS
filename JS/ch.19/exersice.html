@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="text" id="text" placeholder="找作者?">
+    <input type="button" value="送出" onclick="getUserPost(text.value)">
+    <ul></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const getUserPost = async (userName) => {
+            try {
+                $("ul").text('');
+                $("li").remove();
+
+                let users = axios.get('https://jsonplaceholder.typicode.com/users');
+                let posts = axios.get('https://jsonplaceholder.typicode.com/posts');
+                users = await users;
+                posts = await posts;
+
+                let userId = 0;
+                for (let user of users.data) {
+                    if (user.name == userName) {
+                        $("ul").append(`${user.name} 的文章有：`)
+                        userId = user.id;
+                        break;
+                    }
+                }
+
+                if (userId > 0) {
+                    posts = posts.data.filter(post => {
+                        return post.userId === userId;
+                    })
+
+                    for (let post of posts) {
+                        $("ul").append(`<li>${post.title}</li>`)
+                    }
+                }
+                else {
+                    $("ul").append(`找不到作者`)
+                }
+            } catch (error) {
+                console.log(error.message);
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>
