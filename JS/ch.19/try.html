@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        try {
+            // 用不存在的 function 觸發不存在的錯誤
+            alertt('aaa')
+            // 因為上面出錯，會直接跳到 catch
+            console.log('bbb')
+        }
+        catch (err) {
+            // 錯誤訊息
+            console.log(err);
+            console.log(err.name);
+            console.log(err.message);
+            if (err.message.includes("is not defined")) {
+                console.log('使用了未定義的函式')
+            }
+
+        }*/
+
+        // 只接受五到十的數字
+        const validate = (input) => {
+            let re = { ok: false, msg: '' }
+
+            try {
+                // 如果沒有丟東西進 function，或是丟空的東西進來
+                if (input === undefined || input.length === 0) {
+                    // 手動拋出錯誤
+                    throw new Error('不能為空')
+                }
+                else if (isNaN(input)) {
+                    throw new Error('不是數字')
+                }
+                else if (input < 5) {
+                    throw new Error('太小了')
+                }
+                else if (input > 10) {
+                    throw new Error('太大了')
+                }
+
+                re.ok = true;
+            } catch (error) {
+                console.log(error);
+                console.log(error.name);
+                console.log(error.message);
+                re.msg = error.message;
+            }
+            return re;
+        }
+        const isok = validate(7);
+        console.log(isok);
+
+    </script>
+</body>
+
+</html>
