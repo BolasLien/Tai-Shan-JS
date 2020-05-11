@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .big {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <p v-text="msg"></p>
+        <p>{{msg2}}</p>
+        <p v-html="msg2"></p>
+
+        <!-- v-if -->
+        <!-- 符合條件時：標籤出現在DOM，不符合時：不存在標籤 -->
+        <p v-if="number ===1">數字是1</p>
+        <p v-else-if="number===2">數字是2</p>
+        <p v-else>數字是其他</p>
+
+        <!-- 符合條件時：顯示標籤內容，不符合時：該標籤 Display:none -->
+        <p v-show="number ===1">數字是1(v-show)</p>
+
+        <!-- v-for -->
+        <!-- 如果是Array，可以直接跑 for of -->
+        <ul>
+            <li v-for="fruit in fruits">{{ fruit }}</li>
+        </ul>
+
+        <!-- 如果是Array，可以直接跑 for in，可以帶的值有2個(value, index) -->
+        <ul>
+            <li v-for="(fruit, index) in fruits">{{index + "." + fruit}}</li>
+        </ul>
+
+        <!-- 如果是JSON，可以帶的值有三個(value, key, index) -->
+        <ul>
+            <li v-for="(web, key, index) in webs">{{web+"."+key+"."+index}}</li>
+        </ul>
+
+        <!-- 綁定屬性 => b-bind:屬性 或 :屬性  -->
+        <img v-bind:src="img" width="100px">
+        <img :src="img" width="100px">
+
+        <br>
+        <img v-for="image in images" :src="image" width="100px">
+
+        <!-- style的寫法 -->
+        <!-- 指定Data -->
+        <h1 :style="style">aaa</h1>
+        <!-- 直接寫一個JSON -->
+        <h1 :style="{backgroundColor: color ,fontSize:'50px'}">aaa</h1>
+
+        <!-- class的寫法 -->
+        <!-- 指定Data -->
+        <h1 :class="myClass">aaa</h1>
+        <!-- 直接寫一個JSON，要指定boolean，要注意的是，當 class 設為 false 時，DOM 不會存在這個 Class -->
+        <h1 :class="{red:isRed,big:false}">aaa</h1>
+
+        <!-- v-model => 把 input 的 value 跟 Vue 元件 Data 的 value 綁在一起 -->
+        <input type="text" v-model="color"">
+        {{text}}
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app', //哪個元素要變成Vue元件
+                name: 'app', //給這個元件一個名字
+                data: { //這個元件有哪些資料
+                    msg: 'Hello Vue',
+                    msg2: '<a href="http://google.com">連結</a>',
+                    number: 1,
+                    fruits: ['蘋果', '香蕉', '西瓜', '芭樂', '芒果'],
+                    webs: {
+                        fb: 'facebook',
+                        yt: 'youtube'
+                    },
+                    img: 'https://developer.android.com/guide/practices/ui_guidelines/images/NB_Icon_Mask_Shapes_Ext_02.gif?hl=zh-tw',
+                    images: [
+                        'https://developer.android.com/guide/practices/ui_guidelines/images/NB_Icon_Layers_3D_03_ext.gif?hl=zh-tw',
+                        'https://developer.android.com/guide/practices/ui_guidelines/images/Single_Icon_Parallax_Demo_01_2x_ext.gif?hl=zh-tw',
+                        'https://developer.android.com/guide/practices/ui_guidelines/images/Single_Icon_Pickup_Drop_01_2x_ext.gif?hl=zh-tw'
+
+                    ],
+                    style: {
+                        backgroundColor: 'red',
+                        fontSize: '50px',
+                    },
+                    myClass: {
+                        red: true,
+                        big: false
+                    },
+                    color: 'blue',
+                    isRed: true,
+                    text: ''
+                }
+            })
+        </script>
+</body>
+
+</html>
