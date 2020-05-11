@@ -68,44 +68,66 @@
         <h1 :class="{red:isRed,big:false}">aaa</h1>
 
         <!-- v-model => 把 input 的 value 跟 Vue 元件 Data 的 value 綁在一起 -->
-        <input type="text" v-model="color"">
+        <input type="text" v-model="text" @keydown.enter="add">
         {{text}}
+
+        <!-- v-on => 事件 -->
+        <input type="button" value="按鈕" v-on:click="add">
+        <input type="button" value="按鈕" @click="add">
+
+        <p>我有 {{ count }} 個水果</p>
+        <a href="https://fb.com" @click.prevent="click">連結到facebook</a>
     </div>
     <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script>
-            new Vue({
-                el: '#app', //哪個元素要變成Vue元件
-                name: 'app', //給這個元件一個名字
-                data: { //這個元件有哪些資料
-                    msg: 'Hello Vue',
-                    msg2: '<a href="http://google.com">連結</a>',
-                    number: 1,
-                    fruits: ['蘋果', '香蕉', '西瓜', '芭樂', '芒果'],
-                    webs: {
-                        fb: 'facebook',
-                        yt: 'youtube'
-                    },
-                    img: 'https://developer.android.com/guide/practices/ui_guidelines/images/NB_Icon_Mask_Shapes_Ext_02.gif?hl=zh-tw',
-                    images: [
-                        'https://developer.android.com/guide/practices/ui_guidelines/images/NB_Icon_Layers_3D_03_ext.gif?hl=zh-tw',
-                        'https://developer.android.com/guide/practices/ui_guidelines/images/Single_Icon_Parallax_Demo_01_2x_ext.gif?hl=zh-tw',
-                        'https://developer.android.com/guide/practices/ui_guidelines/images/Single_Icon_Pickup_Drop_01_2x_ext.gif?hl=zh-tw'
+    <script>
+        new Vue({
+            el: '#app', //哪個元素要變成Vue元件
+            name: 'app', //給這個元件一個名字
+            data: { //這個元件有哪些資料
+                msg: 'Hello Vue',
+                msg2: '<a href="http://google.com">連結</a>',
+                number: 1,
+                fruits: ['蘋果', '香蕉', '西瓜', '芭樂', '芒果'],
+                webs: {
+                    fb: 'facebook',
+                    yt: 'youtube'
+                },
+                img: 'https://developer.android.com/guide/practices/ui_guidelines/images/NB_Icon_Mask_Shapes_Ext_02.gif?hl=zh-tw',
+                images: [
+                    'https://developer.android.com/guide/practices/ui_guidelines/images/NB_Icon_Layers_3D_03_ext.gif?hl=zh-tw',
+                    'https://developer.android.com/guide/practices/ui_guidelines/images/Single_Icon_Parallax_Demo_01_2x_ext.gif?hl=zh-tw',
+                    'https://developer.android.com/guide/practices/ui_guidelines/images/Single_Icon_Pickup_Drop_01_2x_ext.gif?hl=zh-tw'
 
-                    ],
-                    style: {
-                        backgroundColor: 'red',
-                        fontSize: '50px',
-                    },
-                    myClass: {
-                        red: true,
-                        big: false
-                    },
-                    color: 'blue',
-                    isRed: true,
-                    text: ''
+                ],
+                style: {
+                    backgroundColor: 'red',
+                    fontSize: '50px',
+                },
+                myClass: {
+                    red: true,
+                    big: false
+                },
+                color: 'blue',
+                isRed: true,
+                text: ''
+            },
+            methods: {
+                add() {
+                    if (this.text.length > 0) {
+                        this.fruits.push(this.text)
+                        this.text = ''
+                    }
+                }, click(event) {
+                    alert(event.target.tagName)
                 }
-            })
-        </script>
+            },
+            computed: { //經過運算的function(必有return)，可以在body裡面當data呼叫
+                count() {
+                    return this.fruits.length
+                }
+            }
+        })
+    </script>
 </body>
 
 </html>
