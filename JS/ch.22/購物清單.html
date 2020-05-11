@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>購物清單</h1>
+        <input type="text" v-model="newItem" @keydown.enter="add" :style="{border:'4px solid '+bgColor}">
+        <input type="button" value="新增" @click="add">
+        <hr>
+        <h2>顯示方式</h2>
+        <input type="button" value="顯示全部" @click="selectFilter = '全部'">
+        <input type="button" value="顯示已完成" @click="selectFilter = '已完成'">
+        <input type="button" value="顯示未完成" @click="selectFilter = '未完成'">
+        <hr>
+        <h2>刪除方式</h2>
+        <input type="button" value="刪除全部資料" @click="clear">
+        <input type="button" value="刪除未完成資料" @click="clear">
+        <input type="button" value="刪除已完成資料" @click="clear">
+        <input type="button" value="刪除勾選資料" @click="clear">
+        <hr>
+        <h2>勾選方式</h2>
+        <input type="button" value="全部 勾選" @click="checkall(true)">
+        <input type="button" value="全部 取消勾選" @click="checkall(false)">
+        <hr>
+        <h3>顯示：<span>{{ selectFilter + '，共 ' + filter.length + ' 個項目' }}</span> </h3>
+        <ul>
+            <li v-for="(item, index) in filter" @dblclick="showEdit(index)">
+                <input type="checkbox" :checked="item.done" @change="item.done = !item.done">
+                <del v-if="item.done">{{ item.text}}</del>
+                <span v-else>{{ item.text }}</span>
+                <input v-if="item.edit" type="text" v-model="editItem" @keydown.enter="edit(index)"
+                    @keydown.esc="showEdit(index)">
+                <input type="button" value="x" @click="items.splice(index, 1)">
+            </li>
+        </ul>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            name: 'app',
+            data: {
+                newItem: '',
+                editItem: '',
+                selectFilter: '全部',
+                items: []
+            },
+            methods: {
+                add() {
+                    if (this.newItem.length > 2) {
+                        this.items.push({ done: false, edit: false, text: this.newItem })
+                        this.newItem = ''
+                    }
+                    else {
+                        alert('請輸入三個字以上')
+                    }
+
+                },
+                showEdit(index) {
+                    this.items[index].edit = !this.items[index].edit
+                    this.editItem = this.items[index].text
+                },
+                edit(index) {
+                    if (this.items[index].edit == true) {
+                        if (this.editItem.length > 2) {
+                            this.items[index].text = this.editItem
+                            this.editItem = ''
+                            this.showEdit(index)
+                        }
+                        else
+                            alert('請輸入三個字以上')
+                    }
+                },
+                clear() {
+                    this.items = []
+                    localStorage.setItem('buylist', JSON.stringify(this.items))
+                },
+                checkall(isCheck) {
+                    console.log("1");
+                    for (item in this.items) {
+                        console.log("2");
+                        item.done = isCheck;
+                    }
+                }
+            },
+            computed: {
+                bgColor() {
+                    if (this.newItem.length === 0) { return 'black' }
+                    else if (this.newItem.length > 2) { return 'blue' }
+                    else { return 'red' }
+                },
+                filter() {
+                    if (this.selectFilter == '已完成') { return this.items.filter(item => item.done == true) }
+                    else if (this.selectFilter == '未完成') { return this.items.filter(item => item.done == false) }
+                    else { return this.items }
+                }
+            },
+            watch: {
+                items: {
+                    deep: true,
+                    handler() {
+                        localStorage.setItem('buylist', JSON.stringify(this.items))
+                    }
+                },
+            },
+            mounted() {
+                const data = localStorage.getItem('buylist')
+                if (data != null) {
+                    this.items = JSON.parse(data)
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>
