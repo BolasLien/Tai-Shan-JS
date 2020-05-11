@@ -60,6 +60,12 @@
                         localStorage.setItem('todo', JSON.stringify(this.items))
                     }
                 }
+            },
+            mounted() {
+                const data = localStorage.getItem('todo')
+                if (data !== null) {
+                    this.items = JSON.parse(data)
+                }
             }
         })
     </script>
