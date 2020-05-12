@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .del {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,12 +33,11 @@
         <h3>顯示：<span>{{ selectFilter + '，共 ' + filter.length + ' 個項目' }}</span> </h3>
         <ul>
             <li v-for="(item, index) in filter" @dblclick="showEdit(item)">
-                <input type="checkbox" :checked="item.done" @change="item.done = !item.done">
-                <del v-if="item.done">{{ item.text}}</del>
-                <span v-else>{{ item.text }}</span>
+                <input type="checkbox" :checked="item.done" @change="checked(item)">
+                <span :class="{del: item.done}">{{ item.text}}</span>
                 <input v-if="item.edit" type="text" v-model="editItem" @keydown.enter="edit(item)"
                     @keydown.esc="showEdit(item)">
-                <input type="button" value="x" @click="items.splice(index, 1)">
+                <input type="button" value="x" @click="del(item)">
             </li>
         </ul>
     </div>
@@ -50,14 +54,22 @@
             },
             methods: {
                 add() {
-                    if (this.newItem.length > 2) {
+                    if (this.newItem.length >= 2) {
                         this.items.push({ done: false, edit: false, text: this.newItem })
                         this.newItem = ''
                     }
                     else {
-                        alert('請輸入三個字以上')
+                        alert('請輸入2個字以上')
                     }
 
+                },
+                checked(item) {
+                    const index = this.items.indexOf(item)
+                    this.items[index].done = !this.items[index].done
+                },
+                del(item) {
+                    const index = this.items.indexOf(item)
+                    this.items.splice(index, 1)
                 },
                 showEdit(item) {
                     item.edit = !item.edit
@@ -65,13 +77,13 @@
                 },
                 edit(item) {
                     if (item.edit == true) {
-                        if (this.editItem.length > 2) {
+                        if (this.editItem.length >= 2) {
                             item.text = this.editItem
                             this.editItem = ''
                             this.showEdit(item)
                         }
                         else
-                            alert('請輸入三個字以上')
+                            alert('請輸入2個字以上')
                     }
                 },
                 clear(str) {
@@ -82,9 +94,7 @@
             },
             computed: {
                 bgColor() {
-                    if (this.newItem.length === 0) { return 'black' }
-                    else if (this.newItem.length > 2) { return 'blue' }
-                    else { return 'red' }
+                    return (this.newItem.length === 0) ? 'black' : (this.newItem.length >= 2) ? 'blue' : 'red'
                 },
                 filter() {
                     if (this.selectFilter == '已完成') { return this.items.filter(item => item.done == true) }

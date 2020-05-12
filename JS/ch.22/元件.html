@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <counter v-for="n in 3"></counter>
+        <proptest text="天氣不好下雨"></proptest>
+        <proptest :text="msg"></proptest>
+        <post v-for="post in posts" :data="post" @good="handleGood"></post>
+
+
+        <comp1></comp1>
+        <comp2></comp2>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <!-- Vue 元件的 HTML 部分 -->
+    <script type="text/x-template" id="counter">
+        <button @click="count++"> 點了 {{ count }} 次</button>
+    </script>
+    <script type="text/x-template" id="proptest">
+        <div>
+            {{ text }}
+        </div>
+    </script>
+    <script type="text/x-template" id="post">
+        <div>
+            <h1>標題:{{ data.title }}</h1>
+            <h3>作者:{{ data.author }}</h3>
+            <p>{{ data.content }}</p>
+            <button @click="good">讚</button>
+        </div>
+    </script>
+    <script type="text/x-template" id="comp1">
+        <div>
+        <input type="text" v-model="text">
+        <button @click="sendData">傳資料</button>
+    </div>
+    </script>
+    <script type="text/x-template" id="comp2">
+        <div> <p>{{ text }}</p>    </div>
+    </script>
+
+
+
+
+    <script>
+        // 註冊元件
+        Vue.component('counter', {
+            // 使用 ID 為 counter 的東西當元件的 HTML 部分
+            template: '#counter',
+            // data 必須要用 Function 的寫法
+            data() {
+                return {
+                    count: 0
+                }
+            }
+        })
+
+        Vue.component('proptest', {
+            template: '#proptest',
+            props: {
+                text: String
+            }
+        })
+
+        Vue.component('post', {
+            template: '#post',
+            // 外面傳進元件的資料有哪些
+            props: {
+                data: Object
+            },
+            methods: {
+                good() {
+                    this.$emit('good', this.data.author, this.data.title)
+                }
+            }
+        })
+
+
+        const eventBus = new Vue()
+
+        Vue.component('comp1', {
+            template: '#comp1',
+            data() {
+                return {
+                    text: ''
+                }
+            },
+            methods: {
+                sendData() {
+                    eventBus.$emit('sendData', this.text)
+                }
+            }
+        })
+
+        Vue.component('comp2', {
+            template: '#comp2',
+            data() {
+                return {
+                    text: ''
+                }
+            },
+            mounted() {
+                eventBus.$on('sendData', (data) => {
+                    this.text = data
+                })
+            }
+        })
+
+
+        new Vue({
+            el: '#app',
+            name: 'app',
+            data: {
+                msg: 'aaaaa',
+                posts: [
+                    {
+                        title: '一看查看她說信號提醒不是很身體，吸收勞。',
+                        author: '請您私',
+                        content: '理論國有眼神落實新型丈夫後悔也不住房危機一把手機鈴聲程式，打了機構開發商不懂，可以用對面互相，當我。'
+                    },
+                    {
+                        title: '電信絶對寫真，出生。',
+                        author: '公里運輸，告。',
+                        content: '韓國物流受傷只好推薦，取得溫柔接收回事舉辦貸款之間相冊優勢她說沒事感覺到承擔，立刻首頁，並且閲讀為您首頁自主妻子創作楠雅一種，當地開了浪費教授前後公佈習慣，拒絶所需，多個投票一件鑒定概念用品學院同樣升級拒絶，決定不良運。'
+                    }
+                ]
+            },
+            methods: {
+                handleGood(author, title) {
+                    alert(`你按了 ${author} 的 ${title} 文章讚`)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
