@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            display: inline-block;
+            border: 3px solid #333;
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <book :data="goodCount"></book>
+        <card v-for="card in cards" :data="card"></card>
+    </div>
+
+    <script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/x-template" id="book">
+        <div>
+            <h1>卡片收集頁</h1>
+            <h3>按了 {{data}} 個讚</h3>
+        </div>
+    </script>
+
+
+    <script type="text/x-template" id="card">
+        <div :class="{card: true}">
+        <img :src="data.src">
+        <h1>{{ data.title }}</h1>
+        <button v-if="data.isGood" @clcik="bad">收回讚</button>
+        <button v-else @click="good">讚</button>
+    </div>
+    </script>
+
+    <script>
+        const eventBus = new Vue();
+
+        Vue.component('book', {
+            template: '#book',
+            props: {
+                data: Number
+            }
+
+        })
+
+        Vue.component('card', {
+            template: '#card',
+            props: {
+                data: Object
+            },
+            methods: {
+                good() {
+                    eventBus.$emit('good')
+                    this.data.isGood = true;
+                    console.log("good");
+                },
+                bad() {
+                    eventBus.$emit('bad')
+                    this.data.isGood = false;
+                    console.log("bad");
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+            name: 'app',
+            data: {
+                cards: [
+                    {
+                        src: 'https://picsum.photos/200/200/?random=1',
+                        title: '西瓜',
+                        isGood: false
+                    },
+                    {
+                        src: 'https://picsum.photos/200/200/?random=2',
+                        title: '鳳梨',
+                        isGood: false
+                    },
+                    {
+                        src: 'https://picsum.photos/200/200/?random=3',
+                        title: '香蕉',
+                        isGood: false
+                    },
+                    {
+                        src: 'https://picsum.photos/200/200/?random=4',
+                        title: '番茄',
+                        isGood: false
+                    },
+                    {
+                        src: 'https://picsum.photos/200/200/?random=5',
+                        title: '蘋果',
+                        isGood: false
+                    }
+                ],
+                goodCount: 0
+            },
+            mounted() {
+                eventBus.$on('good', () => {
+                    this.isGood = true
+                    this.goodCount++
+                })
+                eventBus.$on('bad', () => {
+                    this.isGood = false
+                    this.goodCount--
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
