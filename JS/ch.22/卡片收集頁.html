@@ -35,8 +35,8 @@
         <div :class="{card: true}">
         <img :src="data.src">
         <h1>{{ data.title }}</h1>
-        <button v-if="data.isGood" @clcik="bad">收回讚</button>
-        <button v-else @click="good">讚</button>
+        <button v-if="data.isGood" @click="good(false)">收回讚</button>
+        <button v-else @click="good(true)">讚</button>
     </div>
     </script>
 
@@ -48,7 +48,6 @@
             props: {
                 data: Number
             }
-
         })
 
         Vue.component('card', {
@@ -57,15 +56,10 @@
                 data: Object
             },
             methods: {
-                good() {
-                    eventBus.$emit('good')
-                    this.data.isGood = true;
+                good(isGood) {
+                    eventBus.$emit('good', isGood)
+                    this.data.isGood = isGood;
                     console.log("good");
-                },
-                bad() {
-                    eventBus.$emit('bad')
-                    this.data.isGood = false;
-                    console.log("bad");
                 }
             }
         })
@@ -104,13 +98,9 @@
                 goodCount: 0
             },
             mounted() {
-                eventBus.$on('good', () => {
-                    this.isGood = true
-                    this.goodCount++
-                })
-                eventBus.$on('bad', () => {
-                    this.isGood = false
-                    this.goodCount--
+                eventBus.$on('good', (isGood) => {
+                    this.isGood = isGood
+                    isGood ? this.goodCount++ : this.goodCount--
                 })
             }
         })
