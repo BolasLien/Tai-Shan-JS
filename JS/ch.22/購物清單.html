@@ -17,25 +17,22 @@
         <input type="button" value="顯示全部" @click="selectFilter = '全部'">
         <input type="button" value="顯示已完成" @click="selectFilter = '已完成'">
         <input type="button" value="顯示未完成" @click="selectFilter = '未完成'">
-        <hr>
         <h2>刪除方式</h2>
-        <input type="button" value="刪除全部資料" @click="clear">
-        <input type="button" value="刪除未完成資料" @click="clear">
-        <input type="button" value="刪除已完成資料" @click="clear">
-        <input type="button" value="刪除勾選資料" @click="clear">
-        <hr>
+        <input type="button" value="刪除全部" @click="clear('全部')">
+        <input type="button" value="刪除未完成" @click="clear('未完成')">
+        <input type="button" value="刪除已完成" @click="clear('已完成')">
         <h2>勾選方式</h2>
-        <input type="button" value="全部 勾選" @click="items.map(item => item.done = true)">
-        <input type="button" value="全部 取消勾選" @click="items.map(item => item.done = false)">
+        <input type="button" value="全部已完成" @click="items.map(item => item.done = true)">
+        <input type="button" value="全部未完成" @click="items.map(item => item.done = false)">
         <hr>
         <h3>顯示：<span>{{ selectFilter + '，共 ' + filter.length + ' 個項目' }}</span> </h3>
         <ul>
-            <li v-for="(item, index) in filter" @dblclick="showEdit(index)">
+            <li v-for="(item, index) in filter" @dblclick="showEdit(item)">
                 <input type="checkbox" :checked="item.done" @change="item.done = !item.done">
                 <del v-if="item.done">{{ item.text}}</del>
                 <span v-else>{{ item.text }}</span>
-                <input v-if="item.edit" type="text" v-model="editItem" @keydown.enter="edit(index)"
-                    @keydown.esc="showEdit(index)">
+                <input v-if="item.edit" type="text" v-model="editItem" @keydown.enter="edit(item)"
+                    @keydown.esc="showEdit(item)">
                 <input type="button" value="x" @click="items.splice(index, 1)">
             </li>
         </ul>
@@ -62,24 +59,25 @@
                     }
 
                 },
-                showEdit(index) {
-                    this.items[index].edit = !this.items[index].edit
-                    this.editItem = this.items[index].text
+                showEdit(item) {
+                    item.edit = !item.edit
+                    this.editItem = item.text
                 },
-                edit(index) {
-                    if (this.items[index].edit == true) {
+                edit(item) {
+                    if (item.edit == true) {
                         if (this.editItem.length > 2) {
-                            this.items[index].text = this.editItem
+                            item.text = this.editItem
                             this.editItem = ''
-                            this.showEdit(index)
+                            this.showEdit(item)
                         }
                         else
                             alert('請輸入三個字以上')
                     }
                 },
-                clear() {
-                    this.items = []
-                    localStorage.setItem('buylist', JSON.stringify(this.items))
+                clear(str) {
+                    if (str == '已完成') { this.items = this.items.filter(item => item.done == false) }
+                    else if (str == '未完成') { this.items = this.items.filter(item => item.done == true) }
+                    else { this.items = [] }
                 }
             },
             computed: {
