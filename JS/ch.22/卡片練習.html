@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #app {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 800px;
+        }
+
+        .title {
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+            box-sizing: border-box;
+            width: 800px;
+        }
+
+        .card {
+            border: 3px solid #333;
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="title">
+            <h1>便當</h1>
+            <h3>總共 {{ goods }} 個讚</h3>
+        </div>
+        <card v-for="card in cards" :data="card" @good="handleGood"></card>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script type="text/x-template" id="card">
+        <div class="card">
+            <img :src="data.img">
+            <h1> {{ data.title }} </h1>
+            <button @click="toggleGood"> {{ good ? '收回讚' : '讚' }} </button>
+        </div>
+    </script>
+
+    <script>
+        Vue.component('card', {
+            template: '#card',
+            data() {
+                return {
+                    good: false
+                }
+            },
+            props: {
+                data: Object
+            },
+            methods: {
+                toggleGood() {
+                    this.good = !this.good;
+                    this.$emit('good', this.good)
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                goods: 0,
+                cards: [
+                    {
+                        img: 'https://picsum.photos/200/200/?random=1',
+                        title: '雞排飯'
+                    },
+                    {
+                        img: 'https://picsum.photos/200/200/?random=2',
+                        title: '雞腿飯'
+                    },
+                    {
+                        img: 'https://picsum.photos/200/200/?random=3',
+                        title: '招牌飯'
+                    },
+                    {
+                        img: 'https://picsum.photos/200/200/?random=4',
+                        title: '控肉販'
+                    },
+                    {
+                        img: 'https://picsum.photos/200/200/?random=5',
+                        title: '鯖魚飯'
+                    }
+                ]
+            },
+            methods: {
+                handleGood(good) {
+                    good ? this.goods++ : this.goods--
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
