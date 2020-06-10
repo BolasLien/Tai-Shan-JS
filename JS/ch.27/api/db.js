@@ -7,8 +7,9 @@ import validator from 'validator'
 
 const Schema = mongoose.Schema
 
+mongoose.set('useCreateIndex', true)
 // 連線到本地的 mongodb 的 user 資料庫
-mongoose.connect('mongodb://127.0.0.1:27017/user')
+mongoose.connect('mongodb://127.0.0.1:27017/user', { useNewUrlParser: true, useUnifiedTopology: true })
 // 使用插件
 mongoose.plugin(beautifyUnique)
 
@@ -22,7 +23,7 @@ const userSchema = new Schema({
     // 最小長度，自訂錯誤訊息
     minlength: [2, '使用者名稱最少 2 個字'],
     // 最大長度，自訂錯誤訊息
-    maxlength: [2, '使用者名稱最多 20 個字']
+    maxlength: [20, '使用者名稱最多 20 個字']
   },
   account: {
     // 資料類型是文字
@@ -38,9 +39,7 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: [true, '密碼必填'],
-    minlength: [8, '密碼最少 8 個字'],
-    maxlength: [20, '密碼最多 20 個字']
+    required: [true, '密碼必填']
   },
   email: {
     type: String,
@@ -55,6 +54,8 @@ const userSchema = new Schema({
       message: '信箱格式錯誤'
     }
   }
+}, {
+  versionKey: false
 })
 
 // 資料表變數 = mongoose.mondel(資料表名稱，對應的 Schema)
