@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" value="按下去創建使用者" onclick="createUser">
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const createUser= async ()=>{
+    for(let i =0;i<20;i++)
+  {
+    try{
+    let users = await axios.post('http://localhost:3000/new',{"name":"使用者"+i,"account":"account"+i,"password":"password"+i,"email":"email"+i+"@email.com"},{'Content-Type': 'application/json'});
+    }catch(error){
+      console.log(error.message);
+    }
+  }
+
+  }
+
+</script>
+</body>
+</html>
